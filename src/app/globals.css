@@ -493,7 +493,6 @@ html:not(.dark) .aurora {
 .marquee-track {
   display: flex;
   width: max-content;
-  gap: 0.75rem;
   animation: marquee-x 36s linear infinite;
 }
 

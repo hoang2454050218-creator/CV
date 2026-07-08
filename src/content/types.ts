@@ -115,6 +115,8 @@ export interface Content {
     heading: string;
     intro: string;
     groups: { name: string; items: string[] }[];
+    marqueeLabel: string;
+    marqueeItems: string[];
   };
   about: {
     heading: string;

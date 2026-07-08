@@ -264,6 +264,14 @@ export const en: Content = {
         items: ["Freight quoting workflows", "Route risk & port operations", "Tariff / trade actions", "Logistics SME operations", "Bilingual product (EN/VN)"],
       },
     ],
+    marqueeLabel: "Tools & technologies I orchestrate — not a list of hand-typed code",
+    marqueeItems: [
+      "Claude Code", "GPT", "Cursor", "FastAPI", "Django 5", "DRF", "Celery",
+      "PostgreSQL", "Redis", "React 19", "Vue 3", "Vite", "TypeScript",
+      "Tailwind CSS", "Pinia", "Radix UI", "Pydantic v2", "async SQLAlchemy",
+      "Docker", "Kubernetes", "GitHub Actions", "CodeQL", "Trivy", "cosign",
+      "Playwright", "Telegram Bot API", "Webhooks",
+    ],
   },
 
   about: {

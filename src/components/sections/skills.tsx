@@ -12,6 +12,31 @@ export function Skills({ content }: { content: Content }) {
           <p className="measure mt-5 text-muted">{s.intro}</p>
         </Reveal>
 
+        {/* infinite marquee of orchestrated tools — pauses on hover */}
+        <Reveal className="mt-10">
+          <p className="mono-label uppercase text-faint">{s.marqueeLabel}</p>
+          <div className="marquee mt-4">
+            <div className="marquee-track">
+              {[false, true].map((clone) => (
+                <div
+                  key={clone ? "clone" : "main"}
+                  aria-hidden={clone || undefined}
+                  className="flex shrink-0 gap-3 pr-3"
+                >
+                  {s.marqueeItems.map((tool) => (
+                    <span
+                      key={tool}
+                      className="mono-label whitespace-nowrap rounded-full border border-line bg-bg/60 px-3.5 py-1.5 text-muted"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
         <dl className="mt-12 border-t border-line-strong">
           {s.groups.map((group) => (
             <div
