@@ -79,6 +79,10 @@ The A of ARISE drawn as a chart peak breaking above its baseline: one horizontal
 
 Lockup: mark + "ARISE" in the display face (`heading-type`, wght 650) at `letter-spacing: 0.14em` (signage voice). The wordmark never appears without the mark in nav/OG contexts.
 
+## Skills — the Capability Console
+
+One cohesive **glass instrument panel**, not a grid of cards (multi-agent design bake-off winner, unanimous). A titlebar (pulsing status dot + mono `BẢNG NĂNG LỰC` / `CAPABILITY CONSOLE` + a `NN · MM` readout = channels · items). Below, one hairline-divided **channel row** per capability group: left rail = mono index + sans group name + mono item-count; right = the skills as soft **readout tags** (sans, NOT mono boxes — that was the "crude" failure mode) each with a 4px status-dot that ignites with a glow on hover (the site's LIVE-signal language). Each row carries its own `--row-accent` (Backend cyan · Frontend blue · Data&AI mint · Infra violet · Product cyan) that tints its dots/hover — per-channel identity. Rows are content-height, so no dead space; mobile stacks the rail above the tags.
+
 ## Components
 
 - **Buttons**: primary = amber fill (`--brand`/`--brand-ink`), radius 999px, weight 600; secondary = 1px `--line-strong` outline, ink text. Focus: 2px `--brand-strong` outline, offset 2px.

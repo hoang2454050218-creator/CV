@@ -274,6 +274,7 @@ export const en: Content = {
         items: ["Freight quoting workflows", "Route risk & port operations", "Tariff / trade actions", "Logistics SME operations", "Bilingual product (EN/VN)"],
       },
     ],
+    consoleLabel: "Capability console",
     marqueeLabel: "Tools & technologies I orchestrate — not a list of hand-typed code",
     marqueeItems: [
       "Claude Code", "GPT", "Cursor", "FastAPI", "Django 5", "DRF", "Celery",

@@ -241,21 +241,77 @@ p {
   color: var(--ink);
 }
 
-/* skill chips: light up on hover, cheap transform/color only */
-.skill-chip {
-  transition:
-    transform 0.2s var(--ease-out-expo),
-    border-color 0.2s var(--ease-out-expo),
-    color 0.2s var(--ease-out-expo),
-    box-shadow 0.2s var(--ease-out-expo);
+/* Skills = Capability Console — one glass instrument panel with hairline
+   channel rows. Skills are soft sans "readout tags" with a status-dot that
+   ignites on hover (the site's LIVE-signal language), NOT mono chip boxes.
+   Each row carries its own --row-accent (per-product identity). */
+.console-row {
+  transition: background-color 0.3s var(--ease-out-expo);
 }
 
-.skill-chip:hover {
-  transform: translateY(-2px);
+.console-row:hover {
+  background: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 6%, transparent);
+}
+
+.console-index {
+  transition: color 0.3s var(--ease-out-expo);
+}
+
+.console-row:hover .console-index {
+  color: var(--row-accent, var(--brand-strong));
+}
+
+.console-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.72rem 0.32rem 0.62rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--muted);
+  background: color-mix(in oklch, var(--ink) 5%, transparent);
+  transition:
+    color 0.2s var(--ease-out-expo),
+    background-color 0.2s var(--ease-out-expo);
+}
+
+.console-tag-dot {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 60%, var(--faint));
+  transition:
+    background-color 0.2s var(--ease-out-expo),
+    box-shadow 0.2s var(--ease-out-expo),
+    transform 0.2s var(--ease-out-expo);
+}
+
+.console-tag:hover {
   color: var(--ink);
-  border-color: color-mix(in oklch, var(--brand-strong) 60%, transparent);
-  box-shadow: 0 0 0 1px color-mix(in oklch, var(--brand-strong) 30%, transparent),
-    0 6px 18px -10px color-mix(in oklch, var(--brand-strong) 70%, transparent);
+  background: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 14%, transparent);
+}
+
+.console-tag:hover .console-tag-dot {
+  background: var(--row-accent, var(--brand-strong));
+  box-shadow: 0 0 7px color-mix(in oklch, var(--row-accent, var(--brand-strong)) 85%, transparent);
+  transform: scale(1.4);
+}
+
+/* marquee tokens: quiet-to-ink on hover, no boxes */
+.skill-marquee-item {
+  transition: color 0.2s var(--ease-out-expo);
+}
+
+.skill-marquee-item:hover {
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .console-tag:hover .console-tag-dot {
+    transform: none;
+  }
 }
 
 /* left rail of a two-column editorial block sticks while the right scrolls */

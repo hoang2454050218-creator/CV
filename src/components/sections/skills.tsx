@@ -2,8 +2,18 @@ import type { Content } from "@/content/types";
 import { Reveal } from "@/components/reveal";
 import { SectionEyebrow } from "@/components/section-eyebrow";
 
+/** per-channel accent identity — each row wears its own product color */
+const ROW_ACCENT = [
+  "var(--acc-omen)",
+  "var(--acc-nexquote)",
+  "var(--acc-vantis)",
+  "var(--violet)",
+  "var(--brand-strong)",
+];
+
 export function Skills({ content }: { content: Content }) {
   const s = content.skills;
+  const totalItems = s.groups.reduce((n, g) => n + g.items.length, 0);
 
   return (
     <section id="skills" className="scroll-mt-16 border-t border-line bg-surface">
@@ -14,44 +24,62 @@ export function Skills({ content }: { content: Content }) {
           <p className="measure mt-5 text-muted">{s.intro}</p>
         </Reveal>
 
-        {/* capability cards — glass, spotlight border, chips that light up */}
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 md:auto-rows-fr lg:grid-cols-3">
-          {s.groups.map((group, i) => (
-            <Reveal
-              key={group.name}
-              delay={(i % 3) * 0.06}
-              className={i === s.groups.length - 1 ? "sm:col-span-2 lg:col-span-1" : undefined}
-            >
-              <div
-                data-spotlight
-                className="contact-card glass flex h-full flex-col rounded-2xl p-6"
-              >
-                <div className="flex items-center gap-3">
-                  <span
-                    className="mono-label text-brand-strong"
-                    aria-hidden="true"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="h-px flex-1 bg-gradient-to-r from-brand-strong/50 to-transparent" />
-                </div>
-                <h3 className="heading-type mt-3 text-[1.15rem] text-ink">{group.name}</h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="skill-chip mono-label rounded-md border border-line bg-bg/60 px-2.5 py-1 text-muted"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        {/* capability console — one glass instrument panel, hairline channel rows */}
+        <Reveal className="mt-12">
+          <div
+            data-spotlight
+            className="glass overflow-hidden rounded-2xl"
+            style={{ ["--card-accent" as string]: "var(--brand-strong)" }}
+          >
+            {/* titlebar readout */}
+            <div className="flex items-center gap-3 border-b border-line/70 bg-bg/20 px-5 py-3.5 sm:px-6">
+              <span
+                aria-hidden="true"
+                className="live-dot size-[7px] rounded-full bg-brand-strong shadow-[0_0_8px_var(--brand-strong)]"
+              />
+              <span className="mono-label uppercase text-brand-strong">{s.consoleLabel}</span>
+              <span className="mono-label ml-auto whitespace-nowrap uppercase text-faint">
+                {`${String(s.groups.length).padStart(2, "0")} · ${totalItems}`}
+              </span>
+            </div>
 
-        {/* infinite marquee of orchestrated tools — pauses on hover */}
+            {/* channel rows — one per capability group, each with its own accent */}
+            <ul>
+              {s.groups.map((group, i) => (
+                <li
+                  key={group.name}
+                  className="console-row grid gap-x-8 gap-y-3 border-t border-line/60 px-5 py-5 first:border-t-0 sm:px-6 md:grid-cols-[13rem_1fr] md:items-baseline"
+                  style={{ ["--row-accent" as string]: ROW_ACCENT[i % ROW_ACCENT.length] }}
+                >
+                  {/* left rail — channel identity */}
+                  <div className="flex items-baseline gap-3 md:flex-col md:items-start md:gap-1.5">
+                    <span className="console-index mono-label text-faint" aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="heading-type text-[1.05rem] leading-tight text-ink">
+                      {group.name}
+                    </h3>
+                    <span className="mono-label text-faint/70 md:mt-0.5" aria-hidden="true">
+                      {String(group.items.length).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  {/* tag field — sans readout tags with status dots */}
+                  <ul className="flex flex-wrap items-center gap-2">
+                    {group.items.map((item) => (
+                      <li key={item} className="console-tag">
+                        <span className="console-tag-dot" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+
+        {/* orchestrated tools — one hairline-topped band, borderless marquee */}
         <Reveal className="mt-10">
           <p className="mono-label uppercase text-faint">{s.marqueeLabel}</p>
           <div className="marquee mt-4">
@@ -60,12 +88,12 @@ export function Skills({ content }: { content: Content }) {
                 <div
                   key={clone ? "clone" : "main"}
                   aria-hidden={clone || undefined}
-                  className="flex shrink-0 gap-3 pr-3"
+                  className="flex shrink-0 items-center gap-x-6 pr-6"
                 >
                   {s.marqueeItems.map((tool) => (
                     <span
                       key={tool}
-                      className="glass mono-label whitespace-nowrap rounded-full px-3.5 py-1.5 text-muted"
+                      className="skill-marquee-item mono-label whitespace-nowrap text-muted"
                     >
                       {tool}
                     </span>

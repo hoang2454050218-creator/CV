@@ -124,6 +124,7 @@ export interface Content {
     heading: string;
     intro: string;
     groups: { name: string; items: string[] }[];
+    consoleLabel: string;
     marqueeLabel: string;
     marqueeItems: string[];
   };

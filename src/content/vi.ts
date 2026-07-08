@@ -274,6 +274,7 @@ export const vi: Content = {
         items: ["Quy trình báo giá cước", "Rủi ro tuyến & vận hành cảng", "Thuế quan / hành động thương mại", "Vận hành SME logistics", "Sản phẩm song ngữ (EN/VN)"],
       },
     ],
+    consoleLabel: "Bảng năng lực",
     marqueeLabel: "Công cụ & công nghệ tôi điều phối — không phải danh sách code gõ tay",
     marqueeItems: [
       "Claude Code", "GPT", "Cursor", "FastAPI", "Django 5", "DRF", "Celery",
