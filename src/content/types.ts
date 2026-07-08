@@ -138,7 +138,12 @@ export interface Content {
     contactBody: string;
     emailLabel: string;
     email: string;
-    links: { label: string; value: string; href?: string }[];
+    links: {
+      label: string;
+      value: string;
+      href?: string;
+      icon: "github" | "linkedin" | "telegram" | "mail";
+    }[];
     downloadCv: string;
     localeNote: string;
     builtNote: string;

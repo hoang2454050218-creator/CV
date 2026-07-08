@@ -321,16 +321,24 @@ export const vi: Content = {
     email: "hoangpro2607004@gmail.com",
     links: [
       {
+        label: "Email",
+        value: "hoangpro2607004@gmail.com",
+        href: "mailto:hoangpro2607004@gmail.com",
+        icon: "mail",
+      },
+      {
         label: "GitHub",
         value: "hoang2454050218-creator",
         href: "https://github.com/hoang2454050218-creator",
+        icon: "github",
       },
       {
         label: "LinkedIn",
         value: "hoang-bui-404201375",
         href: "https://www.linkedin.com/in/hoang-bui-404201375",
+        icon: "linkedin",
       },
-      { label: "Telegram proof-bot", value: "Cung cấp khi được yêu cầu" },
+      { label: "Telegram proof-bot", value: "Cung cấp khi được yêu cầu", icon: "telegram" },
     ],
     downloadCv: "Tải CV (PDF)",
     localeNote: "Read in English",

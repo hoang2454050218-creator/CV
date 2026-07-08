@@ -3,6 +3,7 @@ import type { Locale } from "@/i18n/config";
 import type { Content } from "@/content/types";
 import { BackToTop } from "./back-to-top";
 import { BeaconMark } from "./beacon-mark";
+import { BrandIcon } from "./brand-icons";
 import { CopyEmail } from "./copy-email";
 import { LocaleLink } from "./locale-link";
 
@@ -36,22 +37,31 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
             </div>
           </div>
 
-          {/* social pills */}
+          {/* channel pills — full brand marks, 2×2 */}
           <div className="grid content-end gap-3 sm:grid-cols-2">
-            {f.links.map((link) =>
-              link.href ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-spotlight
-                  className="glass cta-glow group flex items-center justify-between gap-3 rounded-2xl px-4 py-3.5"
-                >
-                  <span className="min-w-0">
+            {f.links.map((link) => {
+              const inner = (
+                <>
+                  <span className="glass flex size-10 shrink-0 items-center justify-center rounded-xl text-ink">
+                    <BrandIcon id={link.icon} className="size-5" />
+                  </span>
+                  <span className="min-w-0 flex-1">
                     <span className="block font-semibold text-ink">{link.label}</span>
                     <span className="mono-label block truncate text-faint">{link.value}</span>
                   </span>
+                </>
+              );
+              return link.href ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  {...(link.href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  data-spotlight
+                  className="glass cta-glow group flex items-center gap-3 rounded-2xl px-4 py-3.5"
+                >
+                  {inner}
                   <span
                     aria-hidden="true"
                     className="text-muted transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-strong"
@@ -62,15 +72,12 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
               ) : (
                 <div
                   key={link.label}
-                  className="glass flex items-center justify-between gap-3 rounded-2xl px-4 py-3.5 opacity-75"
+                  className="glass flex items-center gap-3 rounded-2xl px-4 py-3.5 opacity-75"
                 >
-                  <span className="min-w-0">
-                    <span className="block font-semibold text-ink">{link.label}</span>
-                    <span className="mono-label block truncate text-faint">{link.value}</span>
-                  </span>
+                  {inner}
                 </div>
-              ),
-            )}
+              );
+            })}
           </div>
         </div>
 
