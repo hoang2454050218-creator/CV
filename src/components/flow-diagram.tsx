@@ -1,9 +1,15 @@
 "use client";
 
 import type { ServiceContent } from "@/content/types";
-import { SERVICE_MARKS } from "./service-marks";
 
 type NodeId = ServiceContent["id"];
+
+/** per-product accents sampled from the real logo files (see globals.css) */
+const NODE_ACCENT: Record<NodeId, string> = {
+  omen: "var(--acc-omen)",
+  vantis: "var(--acc-vantis)",
+  nexquote: "var(--acc-nexquote)",
+};
 
 interface FlowDiagramProps {
   services: readonly ServiceContent[];
@@ -129,7 +135,7 @@ export function FlowDiagram({
           const cy = 140;
           const active = selected === service.id;
           const dim = selected !== null && !active;
-          const Mark = SERVICE_MARKS[service.id];
+          const accent = NODE_ACCENT[service.id];
           return (
             <g
               key={service.id}
@@ -138,27 +144,25 @@ export function FlowDiagram({
               opacity={dim ? 0.45 : 1}
               style={{ transition: "opacity 0.4s var(--ease-out-expo)" }}
             >
-              <circle cx={cx} cy={cy} r="46" fill="var(--bg)" stroke={active ? "var(--brand-strong)" : "var(--line-strong)"} strokeWidth={active ? 1.5 : 1} />
+              <circle cx={cx} cy={cy} r="46" fill="var(--surface)" stroke={active ? accent : "var(--line-strong)"} strokeWidth={active ? 1.5 : 1} />
               <circle
                 cx={cx}
                 cy={cy}
                 r="35"
                 className="node-breathe node-spin"
-                stroke={active ? "var(--brand-strong)" : "var(--muted)"}
+                stroke={active ? accent : "var(--muted)"}
                 strokeWidth="1"
                 strokeDasharray="3 5"
                 style={{ animationDelay: `${i * -1.2}s` }}
               />
-              <svg
-                x={cx - 15}
-                y={cy - 15}
-                width="30"
-                height="30"
-                className="signal-glow"
-                style={{ color: "var(--muted)" }}
-              >
-                <Mark className="" />
-              </svg>
+              <image
+                href={`/logos/${service.id}.svg`}
+                x={cx - 17}
+                y={cy - 17}
+                width="34"
+                height="34"
+                style={{ filter: `drop-shadow(0 0 6px color-mix(in oklch, ${accent} 75%, transparent))` }}
+              />
               <text x={cx} y={cy + 74} textAnchor="middle" className="diagram-name" fill="var(--ink)">
                 {service.name}
               </text>
@@ -263,7 +267,7 @@ export function FlowDiagram({
           const cx = 132;
           const active = selected === service.id;
           const dim = selected !== null && !active;
-          const Mark = SERVICE_MARKS[service.id];
+          const accent = NODE_ACCENT[service.id];
           return (
             <g
               key={service.id}
@@ -272,27 +276,25 @@ export function FlowDiagram({
               opacity={dim ? 0.45 : 1}
               style={{ transition: "opacity 0.4s var(--ease-out-expo)" }}
             >
-              <circle cx={cx} cy={cy} r="40" fill="var(--bg)" stroke={active ? "var(--brand-strong)" : "var(--line-strong)"} strokeWidth={active ? 1.5 : 1} />
+              <circle cx={cx} cy={cy} r="40" fill="var(--surface)" stroke={active ? accent : "var(--line-strong)"} strokeWidth={active ? 1.5 : 1} />
               <circle
                 cx={cx}
                 cy={cy}
                 r="30"
                 className="node-breathe node-spin"
-                stroke={active ? "var(--brand-strong)" : "var(--muted)"}
+                stroke={active ? accent : "var(--muted)"}
                 strokeWidth="1"
                 strokeDasharray="3 5"
                 style={{ animationDelay: `${i * -1.2}s` }}
               />
-              <svg
-                x={cx - 13}
-                y={cy - 13}
-                width="26"
-                height="26"
-                className="signal-glow"
-                style={{ color: "var(--muted)" }}
-              >
-                <Mark className="" />
-              </svg>
+              <image
+                href={`/logos/${service.id}.svg`}
+                x={cx - 15}
+                y={cy - 15}
+                width="30"
+                height="30"
+                style={{ filter: `drop-shadow(0 0 6px color-mix(in oklch, ${accent} 75%, transparent))` }}
+              />
               <text x={cx + 56} y={cy - 2} className="diagram-name" fill="var(--ink)">
                 {service.name}
               </text>

@@ -196,6 +196,16 @@ p {
   max-width: 68ch;
 }
 
+/* tech pills adopt the active product's accent on hover */
+.stack-pill {
+  transition: border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
+}
+
+.stack-pill:hover {
+  border-color: color-mix(in oklch, var(--card-accent, var(--brand-strong)) 65%, transparent);
+  color: var(--ink);
+}
+
 /* animated gradient on the founder's name (kicker) — user-requested */
 @keyframes name-flow {
   to { background-position: -300% 0; }

@@ -4,12 +4,18 @@ import { useState } from "react";
 import type { Content, ServiceContent } from "@/content/types";
 import { FlowDiagram } from "@/components/flow-diagram";
 import { Reveal } from "@/components/reveal";
-import { SERVICE_MARKS } from "@/components/service-marks";
+
+const PANEL_ACCENT: Record<ServiceContent["id"], string> = {
+  omen: "var(--acc-omen)",
+  vantis: "var(--acc-vantis)",
+  nexquote: "var(--acc-nexquote)",
+};
 
 export function AriseSystem({ content }: { content: Content }) {
   const a = content.arise;
   const [selectedId, setSelectedId] = useState<ServiceContent["id"]>("omen");
   const selected = a.services.find((s) => s.id === selectedId) ?? a.services[0];
+  const accent = PANEL_ACCENT[selected.id];
 
   return (
     <section id="arise" className="scroll-mt-16 border-t border-line">
@@ -84,22 +90,44 @@ export function AriseSystem({ content }: { content: Content }) {
             id={`panel-${selected.id}`}
             aria-labelledby={`tab-${selected.id}`}
             tabIndex={0}
-            className="anim-rise rounded-2xl border border-line bg-surface p-6 [animation-duration:0.4s] md:p-10"
+            data-spotlight
+            className="anim-rise glass rounded-2xl p-6 [animation-duration:0.4s] md:p-10"
+            style={{ ["--card-accent" as string]: accent }}
           >
               <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-14">
                 <div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                    {(() => {
-                      const Mark = SERVICE_MARKS[selected.id];
-                      return <Mark className="signal-glow size-8 shrink-0 text-muted" />;
-                    })()}
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    {/* real product mark in a glass tile, brand glow behind it */}
+                    <span
+                      className="glass group inline-flex size-16 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 hover:scale-105"
+                      style={{
+                        boxShadow: `0 0 24px -6px color-mix(in oklch, ${accent} 55%, transparent)`,
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element -- small local SVG, no optimization needed */}
+                      <img
+                        src={`/logos/${selected.id}.svg`}
+                        alt={`${selected.name} logo`}
+                        width={44}
+                        height={44}
+                        className="size-11"
+                        style={{
+                          filter: `drop-shadow(0 0 8px color-mix(in oklch, ${accent} 60%, transparent))`,
+                        }}
+                      />
+                    </span>
                     <h3 className="display-type text-[1.75rem] text-ink">{selected.name}</h3>
-                    <p className="font-medium text-brand-strong">{selected.tagline}</p>
+                    <p className="font-medium" style={{ color: accent }}>
+                      {selected.tagline}
+                    </p>
                   </div>
                   <p className="measure mt-5 text-muted">{selected.description}</p>
 
-                  <div className="mt-7 rounded-xl border border-line-strong bg-bg p-5">
-                    <p className="mono-label flex items-center gap-2 uppercase text-brand-strong">
+                  <div
+                    className="mt-7 rounded-xl border bg-bg/50 p-5"
+                    style={{ borderColor: `color-mix(in oklch, ${accent} 45%, var(--line))` }}
+                  >
+                    <p className="mono-label flex items-center gap-2 uppercase" style={{ color: accent }}>
                       <svg viewBox="0 0 12 12" className="size-3" fill="none" aria-hidden="true">
                         <path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
@@ -115,7 +143,7 @@ export function AriseSystem({ content }: { content: Content }) {
                     {selected.stack.map((tech) => (
                       <li
                         key={tech}
-                        className="mono-label rounded-md border border-line px-2.5 py-1 text-muted"
+                        className="mono-label stack-pill rounded-md border border-line px-2.5 py-1 text-muted"
                       >
                         {tech}
                       </li>
