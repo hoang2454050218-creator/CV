@@ -55,9 +55,9 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
               <Image
                 src="/avatar.jpg"
                 alt={content.about.portraitAlt}
-                width={52}
-                height={52}
-                className="size-13 object-cover"
+                width={64}
+                height={64}
+                className="size-16 object-cover"
                 priority
               />
             </span>
@@ -76,12 +76,12 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
 
         {/* the claim lands instantly — everything else assembles around it.
             Keeping the LCP element animation-free also keeps LCP honest. */}
-        <h1 className="display-type mt-4 max-w-[24ch] text-[length:var(--text-display)] text-ink">
+        <h1 className="display-type mt-5 max-w-[17ch] text-[length:var(--text-display)] text-ink">
           {h.headline}
         </h1>
 
         <Entrance delay={0.2}>
-          <p className="mt-7 max-w-[58ch] text-[1.125rem] leading-relaxed text-muted">
+          <p className="mt-7 max-w-[54ch] text-[1.1875rem] leading-relaxed text-muted">
             {h.subheadline}
           </p>
         </Entrance>

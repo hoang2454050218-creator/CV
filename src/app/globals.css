@@ -93,7 +93,7 @@
   --font-sans: var(--font-stack-sans);
   --font-mono: var(--font-stack-mono);
 
-  --text-display: clamp(2.4rem, 1rem + 5.6vw, 4.75rem);
+  --text-display: clamp(2.6rem, 1rem + 6.6vw, 5.9rem);
   --text-h2: clamp(1.9rem, 1rem + 3vw, 3rem);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -263,7 +263,8 @@ p {
 /* soft dot-grid depth behind the contact heading */
 .dot-grid {
   position: absolute;
-  inset: -15% -25%;
+  /* never extend past the right edge — that creates horizontal scroll */
+  inset: -15% 0 -15% -20%;
   background-image: radial-gradient(
     color-mix(in oklch, var(--ink) 11%, transparent) 1px,
     transparent 1px
@@ -654,6 +655,22 @@ html:not(.dark) .aurora {
     linear-gradient(to bottom, color-mix(in oklch, var(--line) 55%, transparent) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
+}
+
+/* ARISE mark — the apex signal breathes, same liveness cue as the LIVE pill */
+@keyframes mark-halo-breathe {
+  0%, 100% { opacity: 0.14; }
+  50% { opacity: 0.32; }
+}
+
+.mark-halo {
+  animation: mark-halo-breathe 3.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-halo {
+    animation: none;
+  }
 }
 
 /* LIVE pill pulse */
