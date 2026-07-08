@@ -406,7 +406,10 @@ html:not(.dark) .aurora {
   content: "";
   position: absolute;
   border-radius: 999px;
-  filter: blur(110px);
+  /* radial-gradient fill (soft edge baked in) + a light blur — the old
+     blur(110px) on three large layers dominated first paint under CPU
+     throttle; this keeps the glow but rasterizes far cheaper */
+  filter: blur(48px);
   will-change: transform;
 }
 
@@ -415,7 +418,7 @@ html:not(.dark) .aurora {
   height: 46vw;
   top: -12vw;
   left: -8vw;
-  background: color-mix(in oklch, var(--brand-strong) 16%, transparent);
+  background: radial-gradient(circle, color-mix(in oklch, var(--brand-strong) 20%, transparent), transparent 70%);
   animation: aurora-drift-a 52s ease-in-out infinite;
 }
 
@@ -424,7 +427,7 @@ html:not(.dark) .aurora {
   height: 40vw;
   top: 30vh;
   right: -12vw;
-  background: color-mix(in oklch, var(--acc-nexquote) 18%, transparent);
+  background: radial-gradient(circle, color-mix(in oklch, var(--acc-nexquote) 22%, transparent), transparent 70%);
   animation: aurora-drift-b 64s ease-in-out infinite;
 }
 
@@ -433,7 +436,7 @@ html:not(.dark) .aurora {
   height: 34vw;
   bottom: -14vw;
   left: 28vw;
-  background: color-mix(in oklch, var(--violet) 10%, transparent);
+  background: radial-gradient(circle, color-mix(in oklch, var(--violet) 13%, transparent), transparent 70%);
   animation: aurora-drift-a 74s ease-in-out infinite reverse;
 }
 
@@ -798,7 +801,12 @@ html[data-anim="1"] .anim-rise {
 
 .radar-sweep {
   position: absolute;
-  inset: -20%;
+  /* fixed square anchored top-right (not inset:-% of the hero) so a
+     font-swap reflow of the headline can't resize/move it → no CLS */
+  top: -30vh;
+  right: -20vw;
+  width: 130vh;
+  height: 130vh;
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
@@ -809,6 +817,7 @@ html[data-anim="1"] .anim-rise {
   mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 62%);
   animation: radar-turn 16s linear infinite;
   pointer-events: none;
+  will-change: transform;
 }
 
 /* expanding signal pings scattered on the hero chart */
