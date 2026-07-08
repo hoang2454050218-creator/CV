@@ -565,6 +565,8 @@ html:not(.dark) .aurora {
 .shine {
   position: relative;
   overflow: hidden;
+  /* 1px inset top highlight — the premium "lit glass" edge on filled CTAs */
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22);
 }
 
 .shine::after {
