@@ -280,6 +280,7 @@ export const vi: Content = {
 
   about: {
     heading: "Về tôi",
+    portraitAlt: "Chân dung Bùi Xuân Hoàng",
     paragraphs: [
       "Tôi là Bùi Xuân Hoàng, sinh viên năm hai ngành logistics và chuỗi cung ứng tại Đại học Kiến trúc Đà Nẵng (DAU). Hai năm trước tôi chưa viết nổi một dòng code; tôi học vì những vấn đề tôi quan tâm sẽ không tự giải quyết, và sẽ chẳng ai trao cho một sinh viên cả một đội ngũ kỹ sư.",
       "Logistics là sân nhà của tôi — bàn báo giá, cảng trễ chuyến, thông báo thuế quan, cách các forwarder nhỏ thật sự vận hành. Phần mềm trở thành đòn bẩy. Còn việc chỉ huy AI agent dưới kỷ luật kỹ thuật thực thụ là thứ cho phép một người vận hành như một đội ngũ — mà không phải giả vờ mình là một đội ngũ.",

@@ -60,10 +60,20 @@ export default async function ResumePage({ params }: PageParams) {
 
       {/* the document — always paper-white, ATS-friendly single column */}
       <article className="mx-auto w-full max-w-[52rem] border border-line bg-white px-8 py-10 text-neutral-900 shadow-sm sm:px-12 print:max-w-none print:border-0 print:p-0 print:shadow-none">
-        <header>
-          <h1 className="text-[1.75rem] font-bold leading-tight">{r.name}</h1>
-          <p className="mt-1 text-[1.0625rem] font-medium text-neutral-700">{r.role}</p>
-          <p className="mt-2 text-sm text-neutral-600">{r.contactLine.join("  ·  ")}</p>
+        <header className="flex items-start justify-between gap-6">
+          <div>
+            <h1 className="text-[1.75rem] font-bold leading-tight">{r.name}</h1>
+            <p className="mt-1 text-[1.0625rem] font-medium text-neutral-700">{r.role}</p>
+            <p className="mt-2 text-sm text-neutral-600">{r.contactLine.join("  ·  ")}</p>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- plain img prints reliably */}
+          <img
+            src="/avatar.jpg"
+            alt={content.about.portraitAlt}
+            width={96}
+            height={96}
+            className="size-24 shrink-0 rounded-xl border border-neutral-300 object-cover"
+          />
         </header>
 
         <section className="print-avoid-break">

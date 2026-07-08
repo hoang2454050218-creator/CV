@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
@@ -49,16 +50,28 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
 
         <Entrance delay={0.08}>
           {/* human voice, not machine voice: the founder's name is not telemetry */}
-          <p className="mt-10 text-[0.9375rem] font-semibold uppercase tracking-[0.06em] text-muted">
-            {h.kicker.includes(" — ") ? (
-              <>
-                <span className="gradient-name">{h.kicker.split(" — ")[0]}</span>
-                <span> — {h.kicker.split(" — ").slice(1).join(" — ")}</span>
-              </>
-            ) : (
-              h.kicker
-            )}
-          </p>
+          <div className="mt-10 flex items-center gap-4">
+            <span className="avatar-ring shrink-0">
+              <Image
+                src="/avatar.jpg"
+                alt={content.about.portraitAlt}
+                width={52}
+                height={52}
+                className="size-13 object-cover"
+                priority
+              />
+            </span>
+            <p className="text-[0.9375rem] font-semibold uppercase tracking-[0.06em] text-muted">
+              {h.kicker.includes(" — ") ? (
+                <>
+                  <span className="gradient-name">{h.kicker.split(" — ")[0]}</span>
+                  <span> — {h.kicker.split(" — ").slice(1).join(" — ")}</span>
+                </>
+              ) : (
+                h.kicker
+              )}
+            </p>
+          </div>
         </Entrance>
 
         {/* the claim lands instantly — everything else assembles around it.

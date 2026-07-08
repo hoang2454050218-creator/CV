@@ -280,6 +280,7 @@ export const en: Content = {
 
   about: {
     heading: "About me",
+    portraitAlt: "Portrait of Bùi Xuân Hoàng",
     paragraphs: [
       "I'm Bùi Xuân Hoàng, a second-year logistics and supply-chain student at Da Nang Architecture University (DAU). Two years ago I couldn't write a line of code; I learned because the problems I cared about weren't going to solve themselves, and nobody was going to hand a student an engineering team.",
       "Logistics is my home turf — quoting desks, port delays, tariff notices, the way small forwarders actually work. Software became the lever. Directing AI agents under real engineering discipline is what lets one person operate like a team without pretending to be one.",

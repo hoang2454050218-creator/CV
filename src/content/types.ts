@@ -123,6 +123,7 @@ export interface Content {
   };
   about: {
     heading: string;
+    portraitAlt: string;
     paragraphs: string[];
     facts: { label: string; value: string }[];
   };

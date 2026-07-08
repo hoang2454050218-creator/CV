@@ -240,6 +240,41 @@ p {
   color: var(--ink);
 }
 
+/* avatar with a slowly rotating conic-gradient ring */
+.avatar-ring {
+  position: relative;
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 3px;
+  overflow: hidden;
+  box-shadow: 0 0 18px -4px color-mix(in oklch, var(--brand-strong) 60%, transparent);
+}
+
+.avatar-ring::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--brand-strong),
+    var(--accent),
+    var(--violet),
+    var(--brand-strong)
+  );
+  animation: ring-spin 9s linear infinite;
+}
+
+.avatar-ring > * {
+  position: relative;
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-ring::before {
+    animation: none;
+  }
+}
+
 /* animated gradient on the founder's name (kicker) — user-requested */
 @keyframes name-flow {
   to { background-position: -300% 0; }
