@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ARISE — Founder Portfolio / CV
 
-## Getting Started
+Bilingual (EN + VN) founder story site for the sole builder of **ARISE** — a live, three-service freight risk-intelligence platform (**OMEN → VANTIS → NEXQUOTE**). Built with Next.js (App Router), TypeScript strict, and Tailwind CSS v4. All motion is CSS/IntersectionObserver-based — no animation library, and content is never hidden for no-JS visitors, headless renderers, or `prefers-reduced-motion` users.
 
-First, run the development server:
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000 → redirects to /en or /vi
+npm run build      # production build
+npm start          # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Edit content (the only files you normally touch)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All visible copy lives in two typed dictionaries — no strings are hardcoded in JSX:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| File | Language |
+|---|---|
+| `src/content/en.ts` | English |
+| `src/content/vi.ts` | Tiếng Việt |
 
-## Learn More
+Both must satisfy the schema in `src/content/types.ts`, so TypeScript will flag any missing/mismatched key. Proper nouns and tech names stay in English in both locales.
 
-To learn more about Next.js, take a look at the following resources:
+### TODO before publishing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Timeline** — adjust the milestone months in `timeline.milestones` if they differ from reality.
+2. **Telegram proof-bot** — add its public URL in `footer.links` when you're ready to share it.
+3. **Site URL** — set the `NEXT_PUBLIC_SITE_URL` env var in production (used by sitemap, canonical, OG).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+⚠️ Never publish internal IPs, secrets, `.env` values, or private endpoints. Only add URLs you're comfortable making public.
 
-## Deploy on Vercel
+## Languages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Routes are locale-prefixed: `/en`, `/vi`, `/en/resume`, `/vi/resume`.
+- `/` redirects via `src/proxy.ts`: cookie first, then `Accept-Language`.
+- The header toggle persists the choice (cookie + localStorage) and swaps the current path in place.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## CV / PDF export
+
+`/en/resume` and `/vi/resume` are print-optimized (A4, `@media print`, ATS-friendly selectable text). "Download CV" buttons open this route; the print button (or `Ctrl/Cmd+P` → *Save as PDF*) produces the PDF.
+
+## Design system
+
+Tokens live in `src/app/globals.css` (OKLCH, light theme in `:root`, dark under `.dark`) and are documented in `DESIGN.md`. Strategy notes in `PRODUCT.md`. Dark/light follows the OS by default with a manual toggle (next-themes). All motion honors `prefers-reduced-motion`.
+
+## Deploy (Vercel)
+
+Zero-config: push the repo to GitHub → import in Vercel → deploy. Then set `NEXT_PUBLIC_SITE_URL=https://your-domain` in Project Settings → Environment Variables and redeploy.

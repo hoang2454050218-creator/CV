@@ -1,26 +1,387 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Night-watch chart room — token system (see DESIGN.md).
+  Light theme in :root, dark theme under .dark. OKLCH only.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* runtime font stacks — next/font variables live on <html>, so these
+     resolve at :root and stay usable from plain CSS (not just utilities) */
+  --font-stack-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-stack-mono: var(--font-mono-var), ui-monospace, monospace;
+
+  /* palette is identity-locked to the product logos:
+     OMEN cyan · VANTIS navy + mint gradient · NEXQUOTE royal blue */
+  --bg: oklch(1 0 0);
+  --surface: oklch(0.97 0.008 245);
+  --surface-2: oklch(0.94 0.012 245);
+  --line: oklch(0.89 0.015 245);
+  --line-strong: oklch(0.76 0.025 245);
+  --ink: oklch(0.19 0.03 258);
+  --muted: oklch(0.43 0.035 250);
+  --faint: oklch(0.52 0.035 248);
+  --brand: oklch(0.75 0.126 222);
+  --brand-ink: oklch(0.16 0.04 255);
+  --brand-strong: oklch(0.5 0.11 230);
+  --accent: oklch(0.46 0.09 178);
+  --accent-ink: oklch(1 0 0);
+  --accent-fill: oklch(0.46 0.09 178);
+
+  --z-nav: 40;
+  --z-overlay: 50;
+  --z-toast: 60;
+  --z-tooltip: 70;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: light;
+}
+
+.dark {
+  /* deep-water navy from the VANTIS mark, cyan signal from OMEN */
+  --bg: oklch(0.148 0.03 262);
+  --surface: oklch(0.183 0.034 260);
+  --surface-2: oklch(0.222 0.037 258);
+  --line: oklch(0.305 0.04 255);
+  --line-strong: oklch(0.43 0.045 250);
+  --ink: oklch(0.95 0.012 230);
+  --muted: oklch(0.75 0.032 235);
+  --faint: oklch(0.63 0.038 238);
+  --brand: oklch(0.75 0.126 222);
+  --brand-ink: oklch(0.16 0.04 255);
+  --brand-strong: oklch(0.79 0.12 218);
+  --accent: oklch(0.83 0.095 175);
+  --accent-ink: oklch(0.17 0.04 200);
+  --accent-fill: oklch(0.66 0.1 175);
+
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-strong: var(--brand-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-fill: var(--accent-fill);
+
+  --font-sans: var(--font-stack-sans);
+  --font-mono: var(--font-stack-mono);
+
+  --text-display: clamp(2.4rem, 1rem + 5.6vw, 4.75rem);
+  --text-h2: clamp(1.9rem, 1rem + 3vw, 3rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-stack-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--brand-ink);
+}
+
+/* no border-radius here: an unlayered rule would override rounded-* utilities
+   on pill buttons; modern outlines follow the element's own radius */
+:focus-visible {
+  outline: 2px solid var(--brand-strong);
+  outline-offset: 2px;
+}
+
+/* --- shared primitives --- */
+
+.container-page {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section-pad {
+  padding-block: clamp(5rem, 14vh, 9.5rem);
+}
+
+.display-type {
+  /* micro-subset first (tiny, arrives ~instantly), full Archivo as
+     per-glyph fallback for characters outside the subset */
+  font-family: var(--font-archivo-display), var(--font-archivo), system-ui, sans-serif;
+  font-weight: 640;
+  font-stretch: 120%;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+.heading-type {
+  font-weight: 620;
+  font-stretch: 112%;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.mono-label {
+  font-family: var(--font-stack-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.measure {
+  max-width: 68ch;
+}
+
+/* faint chart graticule backdrop (hero / diagram only) */
+.chart-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--line) 55%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
+}
+
+/* LIVE pill pulse */
+@keyframes pill-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
+}
+
+.live-dot {
+  animation: pill-pulse 2.4s var(--ease-out-expo) infinite;
+}
+
+/* amber data pulses traveling the flow path */
+@keyframes flow-dash {
+  to { stroke-dashoffset: -240; }
+}
+
+.flow-path {
+  stroke-dasharray: 6 234;
+  animation: flow-dash 3.2s linear infinite;
+  filter: drop-shadow(0 0 4px color-mix(in oklch, var(--brand-strong) 65%, transparent));
+}
+
+.flow-path-slow {
+  stroke-dasharray: 5 235;
+  animation: flow-dash 4.6s linear infinite;
+}
+
+/* load entrance (hero) — CSS clock-based, transform-only: content is never
+   opacity-hidden, so it paints (and counts for LCP) on the first frame */
+@keyframes rise {
+  from {
+    transform: translateY(26px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* entrance runs only once the document is actually visible (html[data-anim]
+   is set by an inline pre-paint script) — hidden tabs, headless renderers,
+   and no-JS visitors get static, fully visible content instead. The h1 is
+   deliberately NOT animated: it is the LCP element and the claim should
+   land instantly. */
+html[data-anim="1"] .anim-rise {
+  animation: rise 0.7s var(--ease-out-expo) both;
+}
+
+/* Scroll reveals are deliberately absent: any hide-then-show mechanism
+   blanks content in print, full-page screenshots, and headless renderers.
+   The page's motion lives in the hero entrance, the diagram pulses, and
+   interactions — content below the fold is always instantly readable. */
+
+/* diagram text styles (SVG <text>) */
+.diagram-mono {
+  font-family: var(--font-stack-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.diagram-name {
+  font-family: var(--font-stack-sans);
+  font-weight: 650;
+  font-stretch: 118%;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+}
+
+/* node dashed ring breathes */
+@keyframes ring-breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+.node-breathe {
+  animation: ring-breathe 3.6s ease-in-out infinite;
+}
+
+/* dashed rings slowly rotate like a radar bezel */
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.node-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ring-spin 48s linear infinite;
+}
+
+/* signal glow — pulses and node cores emit light */
+.signal-glow {
+  filter: drop-shadow(0 0 5px color-mix(in oklch, var(--brand-strong) 80%, transparent));
+}
+
+.accent-glow {
+  filter: drop-shadow(0 0 5px color-mix(in oklch, var(--accent) 70%, transparent));
+}
+
+/* radar sweep — a slow conic beam behind the hero (ambient, decorative) */
+@keyframes radar-turn {
+  to { transform: rotate(360deg); }
+}
+
+.radar-sweep {
+  position: absolute;
+  inset: -20%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 330deg,
+    color-mix(in oklch, var(--brand-strong) 14%, transparent) 356deg,
+    color-mix(in oklch, var(--brand-strong) 26%, transparent) 360deg
+  );
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 62%);
+  animation: radar-turn 16s linear infinite;
+  pointer-events: none;
+}
+
+/* expanding signal pings scattered on the hero chart */
+@keyframes ping-ring {
+  0% { transform: scale(0.25); opacity: 0.9; }
+  70% { opacity: 0.25; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.signal-ping {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--brand-strong);
+  animation: ping-ring 4.2s var(--ease-out-expo) infinite;
+  pointer-events: none;
+}
+
+.signal-ping::after {
+  content: "";
+  position: absolute;
+  inset: 4.5px;
+  border-radius: 999px;
+  background: var(--brand-strong);
+}
+
+/* CTA hover — cyan running light */
+.cta-glow {
+  transition: box-shadow 0.35s var(--ease-out-expo), transform 0.35s var(--ease-out-expo), opacity 0.35s var(--ease-out-expo);
+}
+
+.cta-glow:hover {
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--brand-strong) 55%, transparent),
+    0 6px 28px -6px color-mix(in oklch, var(--brand-strong) 65%, transparent);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .live-dot,
+  .flow-path,
+  .flow-path-slow,
+  .node-breathe,
+  .node-spin,
+  .radar-sweep,
+  .signal-ping,
+  .anim-rise,
+  html[data-anim="1"] .anim-rise {
+    animation: none;
+  }
+  .radar-sweep {
+    display: none;
+  }
+  .signal-ping {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  .will-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .flow-path,
+  .flow-path-slow {
+    stroke-dasharray: 4 10;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* --- print (resume route) --- */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 16mm;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  .print-avoid-break {
+    break-inside: avoid;
+  }
 }
