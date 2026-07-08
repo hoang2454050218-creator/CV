@@ -70,10 +70,12 @@ export const en: Content = {
     flowHint: "Select a node to inspect the service",
     stackLabel: "Stack",
     realLabel: "This is real",
+    visitLabel: "Visit",
     services: [
       {
         id: "omen",
         name: "OMEN",
+        url: "https://omen.nexquoteapp.com/",
         nodeRole: "senses the world",
         tagline: "Real-time global risk signal engine.",
         description:
@@ -85,6 +87,7 @@ export const en: Content = {
       {
         id: "vantis",
         name: "VANTIS",
+        url: "https://vantis.nexquoteapp.com/",
         nodeRole: "predicts the risk",
         tagline: "Decision layer that grades itself against real ships.",
         description:
@@ -96,6 +99,7 @@ export const en: Content = {
       {
         id: "nexquote",
         name: "NEXQUOTE",
+        url: "https://nexquoteapp.com/",
         nodeRole: "prices the shipment",
         tagline: "Multi-tenant freight-quoting SaaS for logistics SMEs.",
         description:
@@ -354,6 +358,7 @@ export const en: Content = {
     productPeriod: "2025 — present · live in production since mid-2026",
     productIntro:
       "End-to-end supply-chain risk intelligence: three independent, production-deployed services in one pipeline.",
+    productLinks: "nexquoteapp.com · omen.nexquoteapp.com · vantis.nexquoteapp.com",
     services: [
       {
         name: "OMEN — real-time risk signal engine",

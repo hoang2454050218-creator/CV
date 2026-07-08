@@ -78,6 +78,7 @@ export default async function ResumePage({ params }: PageParams) {
             <p className="text-sm text-neutral-600">{r.productPeriod}</p>
           </div>
           <p className="mt-1 text-[0.9375rem] leading-relaxed">{r.productIntro}</p>
+          <p className="mt-1 font-mono text-[0.8125rem] text-neutral-600">{r.productLinks}</p>
           <div className="mt-3 space-y-3">
             {r.services.map((service) => (
               <div key={service.name} className="print-avoid-break">

@@ -30,6 +30,8 @@ export type SectionId =
 export interface ServiceContent {
   id: "omen" | "vantis" | "nexquote";
   name: string;
+  /** public product URL */
+  url: string;
   /** what it does in 3–5 words, shown on the diagram node */
   nodeRole: string;
   /** one-sentence role in the pipeline */
@@ -91,6 +93,7 @@ export interface Content {
     services: [ServiceContent, ServiceContent, ServiceContent];
     stackLabel: string;
     realLabel: string;
+    visitLabel: string;
     pipelineNote: string;
   };
   proof: {
@@ -157,6 +160,8 @@ export interface ResumeContent {
   productName: string;
   productPeriod: string;
   productIntro: string;
+  /** public product URLs, one mono line */
+  productLinks: string;
   services: { name: string; bullets: string[] }[];
   highlightsHeading: string;
   highlights: string[];

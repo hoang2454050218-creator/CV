@@ -70,10 +70,12 @@ export const vi: Content = {
     flowHint: "Chọn một node để xem chi tiết service",
     stackLabel: "Stack",
     realLabel: "Đây là thật",
+    visitLabel: "Truy cập",
     services: [
       {
         id: "omen",
         name: "OMEN",
+        url: "https://omen.nexquoteapp.com/",
         nodeRole: "cảm nhận thế giới",
         tagline: "Engine tín hiệu rủi ro toàn cầu theo thời gian thực.",
         description:
@@ -85,6 +87,7 @@ export const vi: Content = {
       {
         id: "vantis",
         name: "VANTIS",
+        url: "https://vantis.nexquoteapp.com/",
         nodeRole: "dự báo rủi ro",
         tagline: "Tầng quyết định tự chấm điểm mình bằng tàu thật.",
         description:
@@ -96,6 +99,7 @@ export const vi: Content = {
       {
         id: "nexquote",
         name: "NEXQUOTE",
+        url: "https://nexquoteapp.com/",
         nodeRole: "định giá lô hàng",
         tagline: "SaaS báo giá cước multi-tenant cho SME logistics.",
         description:
@@ -354,6 +358,7 @@ export const vi: Content = {
     productPeriod: "2025 — nay · chạy production từ giữa 2026",
     productIntro:
       "Dự báo rủi ro chuỗi cung ứng end-to-end: ba service độc lập, đã deploy production, trong một pipeline.",
+    productLinks: "nexquoteapp.com · omen.nexquoteapp.com · vantis.nexquoteapp.com",
     services: [
       {
         name: "OMEN — engine tín hiệu rủi ro thời gian thực",

@@ -97,8 +97,12 @@ export function AriseSystem({ content }: { content: Content }) {
               <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-14">
                 <div>
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                    {/* real product mark in a glass tile, brand glow behind it */}
-                    <span
+                    {/* real product mark in a glass tile — links to the live product */}
+                    <a
+                      href={selected.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${a.visitLabel} ${selected.name}`}
                       className="glass group inline-flex size-16 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 hover:scale-105"
                       style={{
                         boxShadow: `0 0 24px -6px color-mix(in oklch, ${accent} 55%, transparent)`,
@@ -115,7 +119,7 @@ export function AriseSystem({ content }: { content: Content }) {
                           filter: `drop-shadow(0 0 8px color-mix(in oklch, ${accent} 60%, transparent))`,
                         }}
                       />
-                    </span>
+                    </a>
                     <h3 className="display-type text-[1.75rem] text-ink">{selected.name}</h3>
                     <p className="font-medium" style={{ color: accent }}>
                       {selected.tagline}
@@ -135,6 +139,26 @@ export function AriseSystem({ content }: { content: Content }) {
                     </p>
                     <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink">{selected.realDetail}</p>
                   </div>
+
+                  {/* live-product CTA — the strongest receipt there is */}
+                  <a
+                    href={selected.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-6 inline-flex items-center gap-2 font-semibold underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current"
+                    style={{ color: accent }}
+                  >
+                    {a.visitLabel} {new URL(selected.url).hostname}
+                    <span
+                      aria-hidden="true"
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                    <svg viewBox="0 0 12 12" className="size-3 opacity-70" fill="none" aria-hidden="true">
+                      <path d="M4 2h6v6M10 2 2 10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
                 </div>
 
                 <div className="md:border-l md:border-line md:pl-10">
