@@ -38,7 +38,7 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
 
       <div className="container-page relative pt-20 pb-14 md:pt-28 md:pb-20">
         <Entrance delay={0}>
-          <p className="inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-full border border-line bg-surface px-3.5 py-1.5">
+          <p className="shimmer-border inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-full border border-line bg-surface px-3.5 py-1.5">
             <span className="live-dot inline-block size-2 rounded-full bg-accent-fill" aria-hidden="true" />
             <span className="mono-label font-semibold uppercase text-ink">{h.livePill}</span>
             <span className="mono-label hidden uppercase text-faint sm:inline">
@@ -49,8 +49,15 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
 
         <Entrance delay={0.08}>
           {/* human voice, not machine voice: the founder's name is not telemetry */}
-          <p className="mt-10 text-[0.9375rem] font-medium uppercase tracking-[0.06em] text-muted">
-            {h.kicker}
+          <p className="mt-10 text-[0.9375rem] font-semibold uppercase tracking-[0.06em] text-muted">
+            {h.kicker.includes(" — ") ? (
+              <>
+                <span className="gradient-name">{h.kicker.split(" — ")[0]}</span>
+                <span> — {h.kicker.split(" — ").slice(1).join(" — ")}</span>
+              </>
+            ) : (
+              h.kicker
+            )}
           </p>
         </Entrance>
 
@@ -85,12 +92,20 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <a
               href="#arise"
-              className="cta-glow rounded-full bg-brand px-6 py-2.5 font-semibold text-brand-ink"
+              data-magnetic
+              className="shine cta-glow group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 font-semibold text-brand-ink"
             >
               {h.ctaExplore}
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
             </a>
             <Link
               href={`/${locale}/resume`}
+              data-magnetic
               className="cta-glow rounded-full border border-line-strong px-6 py-2.5 font-semibold text-ink"
             >
               {h.ctaDownloadCv}
@@ -115,6 +130,13 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
           <p className="mx-auto mt-6 max-w-[52ch] text-center text-sm text-muted">
             {h.diagramCaption}
           </p>
+
+          {/* scroll hint */}
+          <div className="mt-12 flex justify-center" aria-hidden="true">
+            <div className="flex h-9 w-[22px] items-start justify-center rounded-full border border-line-strong pt-1.5">
+              <span className="scroll-hint-dot block size-1.5 rounded-full bg-brand-strong" />
+            </div>
+          </div>
         </Entrance>
       </div>
     </section>

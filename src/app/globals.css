@@ -196,6 +196,32 @@ p {
   max-width: 68ch;
 }
 
+/* animated gradient on the founder's name (kicker) — user-requested */
+@keyframes name-flow {
+  to { background-position: -300% 0; }
+}
+
+.gradient-name {
+  background: linear-gradient(
+    90deg,
+    var(--ink) 0%,
+    var(--brand-strong) 35%,
+    var(--accent) 55%,
+    var(--ink) 80%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: name-flow 10s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-name {
+    animation: none;
+  }
+}
+
 /* nav links: underline grows from the left; active section stays lit */
 .nav-link {
   position: relative;
