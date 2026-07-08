@@ -10,8 +10,8 @@ export function Thesis({ content }: { content: Content }) {
   return (
     <section className="border-t border-line">
       <div className="container-page section-pad">
-        <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:gap-16">
-          <Reveal>
+        <div className="grid gap-10 md:grid-cols-[1fr_1.5fr] md:gap-16">
+          <Reveal className="col-sticky">
             <SectionEyebrow index={1} text={t.eyebrow} />
             <h2 className="heading-type text-[length:var(--text-h2)] text-ink">{t.heading}</h2>
           </Reveal>

@@ -13,11 +13,15 @@ export function Proof({ content }: { content: Content }) {
   return (
     <section id="proof" className="scroll-mt-16 border-t border-line bg-surface">
       <div className="container-page section-pad">
-        <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:gap-16">
-          <Reveal>
+        <div className="grid gap-10 md:grid-cols-[1fr_1.5fr] md:gap-16">
+          <Reveal className="col-sticky">
             <SectionEyebrow index={3} text={p.eyebrow} />
             <h2 className="heading-type text-[length:var(--text-h2)] text-ink">{p.heading}</h2>
             <p className="mt-5 text-muted">{p.intro}</p>
+            {/* closing statement anchored to the bottom of the sticky rail */}
+            <p className="measure mt-8 border-t border-line pt-6 font-medium text-ink">
+              {p.closing}
+            </p>
           </Reveal>
 
           <div>
@@ -44,10 +48,6 @@ export function Proof({ content }: { content: Content }) {
                 </li>
               ))}
             </ul>
-
-            <Reveal delay={0.1}>
-              <p className="measure mt-8 font-medium text-ink">{p.closing}</p>
-            </Reveal>
           </div>
         </div>
       </div>

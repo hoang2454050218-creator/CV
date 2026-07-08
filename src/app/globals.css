@@ -241,6 +241,32 @@ p {
   color: var(--ink);
 }
 
+/* skill chips: light up on hover, cheap transform/color only */
+.skill-chip {
+  transition:
+    transform 0.2s var(--ease-out-expo),
+    border-color 0.2s var(--ease-out-expo),
+    color 0.2s var(--ease-out-expo),
+    box-shadow 0.2s var(--ease-out-expo);
+}
+
+.skill-chip:hover {
+  transform: translateY(-2px);
+  color: var(--ink);
+  border-color: color-mix(in oklch, var(--brand-strong) 60%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--brand-strong) 30%, transparent),
+    0 6px 18px -10px color-mix(in oklch, var(--brand-strong) 70%, transparent);
+}
+
+/* left rail of a two-column editorial block sticks while the right scrolls */
+@media (min-width: 768px) {
+  .col-sticky {
+    position: sticky;
+    top: 6.5rem;
+    align-self: start;
+  }
+}
+
 /* contact cards: lift + border brighten, fast and subtle */
 .contact-card {
   transition:

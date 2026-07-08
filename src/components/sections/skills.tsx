@@ -14,6 +14,43 @@ export function Skills({ content }: { content: Content }) {
           <p className="measure mt-5 text-muted">{s.intro}</p>
         </Reveal>
 
+        {/* capability cards — glass, spotlight border, chips that light up */}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 md:auto-rows-fr lg:grid-cols-3">
+          {s.groups.map((group, i) => (
+            <Reveal
+              key={group.name}
+              delay={(i % 3) * 0.06}
+              className={i === s.groups.length - 1 ? "sm:col-span-2 lg:col-span-1" : undefined}
+            >
+              <div
+                data-spotlight
+                className="contact-card glass flex h-full flex-col rounded-2xl p-6"
+              >
+                <div className="flex items-center gap-3">
+                  <span
+                    className="mono-label text-brand-strong"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="h-px flex-1 bg-gradient-to-r from-brand-strong/50 to-transparent" />
+                </div>
+                <h3 className="heading-type mt-3 text-[1.15rem] text-ink">{group.name}</h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="skill-chip mono-label rounded-md border border-line bg-bg/60 px-2.5 py-1 text-muted"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
         {/* infinite marquee of orchestrated tools — pauses on hover */}
         <Reveal className="mt-10">
           <p className="mono-label uppercase text-faint">{s.marqueeLabel}</p>
@@ -28,7 +65,7 @@ export function Skills({ content }: { content: Content }) {
                   {s.marqueeItems.map((tool) => (
                     <span
                       key={tool}
-                      className="mono-label whitespace-nowrap rounded-full border border-line bg-bg/60 px-3.5 py-1.5 text-muted"
+                      className="glass mono-label whitespace-nowrap rounded-full px-3.5 py-1.5 text-muted"
                     >
                       {tool}
                     </span>
@@ -38,27 +75,6 @@ export function Skills({ content }: { content: Content }) {
             </div>
           </div>
         </Reveal>
-
-        <dl className="mt-12 border-t border-line-strong">
-          {s.groups.map((group) => (
-            <div
-              key={group.name}
-              className="grid gap-x-8 gap-y-3 border-b border-line py-6 md:grid-cols-[14rem_1fr]"
-            >
-              <dt className="font-semibold text-ink">{group.name}</dt>
-              <dd className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="mono-label rounded-md border border-line bg-bg px-2.5 py-1 text-muted"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );

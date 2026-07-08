@@ -9,7 +9,7 @@ export function About({ content }: { content: Content }) {
   return (
     <section id="about" className="scroll-mt-16 border-t border-line">
       <div className="container-page section-pad">
-        <div className="grid gap-12 md:grid-cols-[0.95fr_1.6fr] md:gap-16">
+        <div className="grid gap-12 md:grid-cols-[0.9fr_1.5fr] md:gap-16">
           {/* portrait — glass frame, brand glow, subtle grade to sit in the theme */}
           <Reveal>
             <figure
