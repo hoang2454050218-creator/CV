@@ -82,11 +82,13 @@ export interface Content {
     diagramLabels: { sources: string; output: string; loop: string };
   };
   thesis: {
+    eyebrow: string;
     heading: string;
     paragraphs: string[];
     pull: string;
   };
   arise: {
+    eyebrow: string;
     heading: string;
     intro: string;
     flowHint: string;
@@ -97,12 +99,14 @@ export interface Content {
     pipelineNote: string;
   };
   proof: {
+    eyebrow: string;
     heading: string;
     intro: string;
     rows: EvidenceRow[];
     closing: string;
   };
   discipline: {
+    eyebrow: string;
     heading: string;
     intro: string;
     items: { title: string; body: string }[];
@@ -110,11 +114,13 @@ export interface Content {
     moatCaption: string;
   };
   timeline: {
+    eyebrow: string;
     heading: string;
     intro: string;
     milestones: Milestone[];
   };
   skills: {
+    eyebrow: string;
     heading: string;
     intro: string;
     groups: { name: string; items: string[] }[];
@@ -122,12 +128,14 @@ export interface Content {
     marqueeItems: string[];
   };
   about: {
+    eyebrow: string;
     heading: string;
     portraitAlt: string;
     paragraphs: string[];
     facts: { label: string; value: string }[];
   };
   vision: {
+    eyebrow: string;
     heading: string;
     body: string[];
     askHeading: string;

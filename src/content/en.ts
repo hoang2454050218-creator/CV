@@ -55,6 +55,7 @@ export const en: Content = {
   },
 
   thesis: {
+    eyebrow: "Why",
     heading: "Why I built ARISE",
     paragraphs: [
       "Freight is where the world's risk becomes a number. A drought in Panama, a strike in Rotterdam, a missile in the Red Sea — every one of them eventually lands on an invoice. I study logistics, and I kept seeing the same gap: the people pricing shipments find out about risk last, after it has already cost them.",
@@ -64,6 +65,7 @@ export const en: Content = {
   },
 
   arise: {
+    eyebrow: "The system",
     heading: "ARISE — the system",
     intro:
       "Three independent services, deployed in production, wired into one pipeline. Each one is real software with its own repo, CI/CD, and users — together they close the loop from world events to a priced shipment.",
@@ -114,6 +116,7 @@ export const en: Content = {
   },
 
   proof: {
+    eyebrow: "Receipts",
     heading: "Proof, not demos",
     intro:
       "A student project lives on localhost. ARISE lives in production, and it keeps receipts. The numbers below come from the running system — not from a pitch deck.",
@@ -166,6 +169,7 @@ export const en: Content = {
   },
 
   discipline: {
+    eyebrow: "Method",
     heading: "How I build",
     intro:
       "Solo doesn't mean casual. I ship under a discipline I designed for one specific situation: a founder directing AI coding agents on software that touches money and risk.",
@@ -201,6 +205,7 @@ export const en: Content = {
   },
 
   timeline: {
+    eyebrow: "Timeline",
     heading: "Seven months, end to end",
     intro: "From first line of code to a self-grading production system.",
     milestones: [
@@ -243,6 +248,7 @@ export const en: Content = {
   },
 
   skills: {
+    eyebrow: "Stack",
     heading: "Skills",
     intro:
       "Grouped and honest — everything below is in production code I direct and can explain line by line.",
@@ -279,6 +285,7 @@ export const en: Content = {
   },
 
   about: {
+    eyebrow: "About",
     heading: "About me",
     portraitAlt: "Portrait of Bùi Xuân Hoàng",
     paragraphs: [
@@ -295,6 +302,7 @@ export const en: Content = {
   },
 
   vision: {
+    eyebrow: "The ask",
     heading: "Where ARISE goes",
     body: [
       "Today ARISE closes one loop: world events → route risk → a priced quote, graded by reality. The next step is opening that loop to others — the forwarders, brokers, and shippers who feel these risks first and quantify them last.",

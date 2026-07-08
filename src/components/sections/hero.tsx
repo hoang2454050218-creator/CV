@@ -106,7 +106,7 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
             <a
               href="#arise"
               data-magnetic
-              className="shine cta-glow group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 font-semibold text-brand-ink"
+              className="shine cta-glow group inline-flex h-12 items-center gap-2 rounded-full bg-brand px-6 font-semibold text-brand-ink"
             >
               {h.ctaExplore}
               <span
@@ -119,13 +119,13 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
             <Link
               href={`/${locale}/resume`}
               data-magnetic
-              className="cta-glow rounded-full border border-line-strong px-6 py-2.5 font-semibold text-ink"
+              className="cta-glow inline-flex h-12 items-center rounded-full border border-line-strong px-6 font-semibold text-ink"
             >
               {h.ctaDownloadCv}
             </Link>
             <a
               href="#contact"
-              className="px-2 py-2.5 font-medium text-muted underline decoration-line underline-offset-4 transition-colors hover:text-ink"
+              className="inline-flex h-12 items-center px-2 font-medium text-muted underline decoration-line underline-offset-4 transition-colors hover:text-ink"
             >
               {h.ctaContact}
             </a>

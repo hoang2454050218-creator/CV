@@ -166,7 +166,8 @@ p {
 }
 
 .section-pad {
-  padding-block: clamp(5rem, 14vh, 9.5rem);
+  /* 64px mobile → 128px desktop, one rhythm for every section */
+  padding-block: clamp(4rem, 2.5rem + 5.5vw, 8rem);
 }
 
 .display-type {

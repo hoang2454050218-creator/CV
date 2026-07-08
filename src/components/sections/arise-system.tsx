@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Content, ServiceContent } from "@/content/types";
 import { FlowDiagram } from "@/components/flow-diagram";
 import { Reveal } from "@/components/reveal";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 
 const PANEL_ACCENT: Record<ServiceContent["id"], string> = {
   omen: "var(--acc-omen)",
@@ -21,6 +22,7 @@ export function AriseSystem({ content }: { content: Content }) {
     <section id="arise" className="scroll-mt-16 border-t border-line">
       <div className="container-page section-pad">
         <Reveal>
+          <SectionEyebrow index={2} text={a.eyebrow} />
           <h2 className="heading-type text-[length:var(--text-h2)] text-ink">{a.heading}</h2>
           <p className="measure mt-5 text-muted">{a.intro}</p>
         </Reveal>

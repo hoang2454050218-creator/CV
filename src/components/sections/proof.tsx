@@ -1,6 +1,7 @@
 import type { Content } from "@/content/types";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 
 /**
  * Evidence ledger — log-style rows, not metric cards. Each value is a
@@ -14,6 +15,7 @@ export function Proof({ content }: { content: Content }) {
       <div className="container-page section-pad">
         <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:gap-16">
           <Reveal>
+            <SectionEyebrow index={3} text={p.eyebrow} />
             <h2 className="heading-type text-[length:var(--text-h2)] text-ink">{p.heading}</h2>
             <p className="mt-5 text-muted">{p.intro}</p>
           </Reveal>

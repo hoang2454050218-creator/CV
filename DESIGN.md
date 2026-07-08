@@ -56,12 +56,11 @@ Rule: components use `--brand-strong` for anything that must read against `--bg`
 
 ## Typography
 
-- **Space Grotesk** (variable wght, has Vietnamese) — display + headings: geometric-futuristic. Display wght 700, tracking −0.025em; h2 wght 650, tracking −0.02em. Headings use `text-wrap: balance`.
-- **Be Vietnam Pro** (static 400/500/600/700) — body voice, drawn for Vietnamese diacritics.
-- **Roboto Mono** (Geist Mono lacks Vietnamese glyphs) — machine voice only: timestamps, metrics, provenance labels, scorecard rows. Never body copy or instructional sentences. Labels ≤ 0.875rem at `letter-spacing: 0.05em`; the one sanctioned exception is evidence-ledger VALUES (proof section), which render as large tabular numerals (1.75rem) — they are data, not labels.
-- Scale (fluid): display `clamp(2.4rem, 1rem + 5.6vw, 4.75rem)` (ceiling lowered from the original spec so the long two-sentence headline holds 3–4 lines at desktop); h2 `clamp(1.9rem, 1rem + 3vw, 3rem)`; h3 `1.35rem`; body `1.0625rem/1.7` (dark) `1.65` (light); mono label `0.8125rem`.
-- LCP note: `.display-type` loads a tiny `text=` micro-subset of Space Grotesk first (full EN alphabet + Vietnamese diacritics, the only preloaded font), falling back per-glyph to the full family.
-- Body measure ≤ 68ch. Vietnamese subset REQUIRED on both families.
+- **Be Vietnam Pro** (static 400/500/600/700) — ONE family for display, headings, and body: drawn for Vietnamese, diacritics perfectly integrated. Display 700 at −0.03em / lh 1.08; h2 700 at −0.02em. Headings use `text-wrap: balance`. (Space Grotesk was dropped: its variable-font `text=` micro-subset came back as a Light instance that browsers faux-bolded — visibly uneven strokes.)
+- **JetBrains Mono** (variable, real Vietnamese subset) — machine voice only: timestamps, metrics, provenance labels, scorecard rows. Never body copy or instructional sentences. Labels ≤ 0.875rem at `letter-spacing: 0.08em`; the one sanctioned exception is evidence-ledger VALUES (proof section), which render as large tabular numerals (1.75rem) — they are data, not labels.
+- Scale (fluid): display `clamp(2.6rem, 1rem + 6.6vw, 5.9rem)`; h2 `clamp(1.9rem, 1rem + 3vw, 3rem)`; h3 `1.35rem`; body `1.0625rem/1.7` (dark) `1.65` (light); mono label `0.8125rem`.
+- LCP note: `.display-type` loads a tiny `text=` micro-subset of Be Vietnam Pro **700** first (full EN alphabet + Vietnamese diacritics, the only preloaded font, real bold — never a faux-bolded instance), falling back per-glyph to the full family.
+- Body measure ≤ 62ch. Vietnamese subset REQUIRED on both families.
 
 ## Spacing & layout
 

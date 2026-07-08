@@ -37,7 +37,7 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
                 <CopyEmail email={f.email} copiedText={f.copiedToast} ariaLabel={f.copyEmail} />
                 <Link
                   href={`/${locale}/resume`}
-                  className="cta-glow inline-flex items-center rounded-full border border-line-strong px-6 py-2.5 font-semibold text-ink"
+                  className="cta-glow inline-flex h-12 items-center rounded-full border border-line-strong px-6 font-semibold text-ink"
                 >
                   {f.downloadCv}
                 </Link>

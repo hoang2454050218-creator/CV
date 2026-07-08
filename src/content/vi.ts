@@ -55,6 +55,7 @@ export const vi: Content = {
   },
 
   thesis: {
+    eyebrow: "Vì sao",
     heading: "Vì sao tôi xây ARISE",
     paragraphs: [
       "Vận tải là nơi rủi ro của thế giới biến thành một con số. Hạn hán ở Panama, đình công ở Rotterdam, tên lửa trên Biển Đỏ — cuối cùng tất cả đều đáp xuống một tờ hóa đơn. Tôi học logistics, và tôi cứ thấy mãi một khoảng trống: những người định giá lô hàng lại là những người biết tin rủi ro sau cùng, khi nó đã kịp gây thiệt hại.",
@@ -64,6 +65,7 @@ export const vi: Content = {
   },
 
   arise: {
+    eyebrow: "Hệ thống",
     heading: "ARISE — hệ thống",
     intro:
       "Ba service độc lập, đã deploy production, nối thành một pipeline. Mỗi service là phần mềm thật với repo, CI/CD và người dùng riêng — hợp lại, chúng khép kín vòng lặp từ biến cố thế giới đến một báo giá cụ thể.",
@@ -114,6 +116,7 @@ export const vi: Content = {
   },
 
   proof: {
+    eyebrow: "Biên lai",
     heading: "Bằng chứng, không phải demo",
     intro:
       "Đồ án sinh viên sống trên localhost. ARISE sống trên production, và nó giữ biên lai. Những con số dưới đây đến từ hệ thống đang chạy — không phải từ slide gọi vốn.",
@@ -166,6 +169,7 @@ export const vi: Content = {
   },
 
   discipline: {
+    eyebrow: "Phương pháp",
     heading: "Cách tôi xây",
     intro:
       "Làm một mình không có nghĩa là làm tùy tiện. Tôi ship dưới một kỷ luật tự thiết kế cho đúng một tình huống: founder chỉ huy AI coding agent trên phần mềm động đến tiền và rủi ro.",
@@ -201,6 +205,7 @@ export const vi: Content = {
   },
 
   timeline: {
+    eyebrow: "Hành trình",
     heading: "Bảy tháng, từ đầu đến cuối",
     intro: "Từ dòng code đầu tiên đến một hệ thống production tự chấm điểm.",
     milestones: [
@@ -243,6 +248,7 @@ export const vi: Content = {
   },
 
   skills: {
+    eyebrow: "Công cụ",
     heading: "Kỹ năng",
     intro:
       "Nhóm gọn và trung thực — mọi thứ dưới đây đều nằm trong code production mà tôi trực tiếp chỉ huy và giải thích được từng dòng.",
@@ -279,6 +285,7 @@ export const vi: Content = {
   },
 
   about: {
+    eyebrow: "Về tôi",
     heading: "Về tôi",
     portraitAlt: "Chân dung Bùi Xuân Hoàng",
     paragraphs: [
@@ -295,6 +302,7 @@ export const vi: Content = {
   },
 
   vision: {
+    eyebrow: "Lời đề nghị",
     heading: "ARISE sẽ đi đến đâu",
     body: [
       "Hôm nay ARISE khép kín một vòng lặp: biến cố thế giới → rủi ro tuyến → một báo giá cụ thể, được thực tế chấm điểm. Bước tiếp theo là mở vòng lặp đó cho người khác — những forwarder, broker và chủ hàng vốn cảm nhận rủi ro đầu tiên nhưng định lượng được nó sau cùng.",

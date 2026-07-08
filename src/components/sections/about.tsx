@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Content } from "@/content/types";
 import { Reveal } from "@/components/reveal";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 
 export function About({ content }: { content: Content }) {
   const a = content.about;
@@ -39,6 +40,7 @@ export function About({ content }: { content: Content }) {
 
           <div>
             <Reveal>
+              <SectionEyebrow index={7} text={a.eyebrow} />
               <h2 className="heading-type text-[length:var(--text-h2)] text-ink">{a.heading}</h2>
             </Reveal>
             <div className="mt-7 space-y-6">

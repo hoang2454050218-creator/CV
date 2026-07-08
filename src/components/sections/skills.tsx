@@ -1,5 +1,6 @@
 import type { Content } from "@/content/types";
 import { Reveal } from "@/components/reveal";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 
 export function Skills({ content }: { content: Content }) {
   const s = content.skills;
@@ -8,6 +9,7 @@ export function Skills({ content }: { content: Content }) {
     <section id="skills" className="scroll-mt-16 border-t border-line bg-surface">
       <div className="container-page section-pad">
         <Reveal>
+          <SectionEyebrow index={6} text={s.eyebrow} />
           <h2 className="heading-type text-[length:var(--text-h2)] text-ink">{s.heading}</h2>
           <p className="measure mt-5 text-muted">{s.intro}</p>
         </Reveal>

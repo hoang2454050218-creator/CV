@@ -1,5 +1,6 @@
 import type { Content } from "@/content/types";
 import { Reveal } from "@/components/reveal";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 
 export function Timeline({ content }: { content: Content }) {
   const t = content.timeline;
@@ -8,6 +9,7 @@ export function Timeline({ content }: { content: Content }) {
     <section id="timeline" className="scroll-mt-16 border-t border-line">
       <div className="container-page section-pad">
         <Reveal>
+          <SectionEyebrow index={5} text={t.eyebrow} />
           <h2 className="heading-type text-[length:var(--text-h2)] text-ink">{t.heading}</h2>
           <p className="measure mt-5 text-muted">{t.intro}</p>
         </Reveal>
