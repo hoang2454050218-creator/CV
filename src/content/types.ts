@@ -139,6 +139,9 @@ export interface Content {
     downloadCv: string;
     localeNote: string;
     builtNote: string;
+    copyEmail: string;
+    copiedToast: string;
+    backToTopAria: string;
   };
   resume: ResumeContent;
 }

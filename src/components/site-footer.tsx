@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Content } from "@/content/types";
+import { BackToTop } from "./back-to-top";
 import { BeaconMark } from "./beacon-mark";
+import { CopyEmail } from "./copy-email";
 import { LocaleLink } from "./locale-link";
 
 export function SiteFooter({ locale, content }: { locale: Locale; content: Content }) {
@@ -15,12 +17,15 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
           <div>
             <h2 className="heading-type text-h2 text-ink">{f.contactHeading}</h2>
             <p className="measure mt-4 text-muted">{f.contactBody}</p>
-            <a
-              href={`mailto:${f.email}`}
-              className="mt-7 inline-block rounded-full bg-brand px-6 py-2.5 font-semibold text-brand-ink transition-opacity hover:opacity-85"
-            >
-              {f.email}
-            </a>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <a
+                href={`mailto:${f.email}`}
+                className="shine cta-glow inline-block rounded-full bg-brand px-6 py-2.5 font-semibold text-brand-ink"
+              >
+                {f.email}
+              </a>
+              <CopyEmail email={f.email} label={f.copyEmail} toastText={f.copiedToast} />
+            </div>
             <div className="mt-4">
               <Link
                 href={`/${locale}/resume`}
@@ -31,34 +36,46 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
             </div>
           </div>
 
-          <dl className="self-end">
-            {f.links.map((link) => (
-              <div
-                key={link.label}
-                className="flex items-baseline justify-between gap-6 border-b border-line py-3 first:border-t"
-              >
-                <dt className="mono-label text-faint">{link.label}</dt>
-                <dd className="text-[0.9375rem] text-muted">
-                  {link.href ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-ink underline decoration-line underline-offset-4 hover:text-brand-strong hover:decoration-brand-strong"
-                    >
-                      {link.value}
-                    </a>
-                  ) : (
-                    link.value
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          {/* social pills */}
+          <div className="grid content-end gap-3 sm:grid-cols-2">
+            {f.links.map((link) =>
+              link.href ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-spotlight
+                  className="glass cta-glow group flex items-center justify-between gap-3 rounded-2xl px-4 py-3.5"
+                >
+                  <span className="min-w-0">
+                    <span className="block font-semibold text-ink">{link.label}</span>
+                    <span className="mono-label block truncate text-faint">{link.value}</span>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="text-muted transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-strong"
+                  >
+                    ↗
+                  </span>
+                </a>
+              ) : (
+                <div
+                  key={link.label}
+                  className="glass flex items-center justify-between gap-3 rounded-2xl px-4 py-3.5 opacity-75"
+                >
+                  <span className="min-w-0">
+                    <span className="block font-semibold text-ink">{link.label}</span>
+                    <span className="mono-label block truncate text-faint">{link.value}</span>
+                  </span>
+                </div>
+              ),
+            )}
+          </div>
         </div>
 
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-          <p className="flex items-center gap-2 text-sm text-faint">
+          <p className="mono-label flex items-center gap-2 text-faint">
             <BeaconMark className="size-4" />
             {f.builtNote}
           </p>
@@ -71,6 +88,8 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
           </LocaleLink>
         </div>
       </div>
+
+      <BackToTop ariaLabel={f.backToTopAria} />
     </footer>
   );
 }

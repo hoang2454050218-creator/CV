@@ -330,7 +330,10 @@ export const en: Content = {
     ],
     downloadCv: "Download CV (PDF)",
     localeNote: "Đọc bằng tiếng Việt",
-    builtNote: "Designed and built by its subject — the same way ARISE was.",
+    builtNote: "// designed & orchestrated with AI — Bùi Xuân Hoàng © 2026",
+    copyEmail: "Copy email",
+    copiedToast: "Copied ✓",
+    backToTopAria: "Back to top",
   },
 
   resume: {
