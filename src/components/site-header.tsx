@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale } from "@/i18n/config";
 import type { NavContent } from "@/content/types";
-import { BeaconMark } from "./beacon-mark";
+import { AriseMark } from "./arise-mark";
 import { LangToggle } from "./lang-toggle";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -59,8 +59,8 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: NavContent })
           className="flex items-center gap-2.5 text-ink"
           onClick={() => setOpen(false)}
         >
-          <BeaconMark className="size-6" />
-          <span className="heading-type text-[1.05rem] tracking-wide">ARISE</span>
+          <AriseMark className="size-7" />
+          <span className="heading-type text-[1.05rem] tracking-[0.14em]">ARISE</span>
         </Link>
 
         <nav aria-label={nav.mainNavAria} className="hidden items-center gap-7 lg:flex">

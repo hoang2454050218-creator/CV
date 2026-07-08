@@ -33,6 +33,7 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // skip Next internals, API routes, and any file with an extension
-  matcher: ["/((?!_next|api|.*\\..*).*)"],
+  // skip Next internals, API routes, extensionless metadata routes
+  // (apple-icon serves a generated PNG), and any file with an extension
+  matcher: ["/((?!_next|api|apple-icon|.*\\..*).*)"],
 };

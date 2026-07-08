@@ -71,6 +71,15 @@ Rule: components use `--brand-strong` for anything that must read against `--bg`
 - Chart-grid motif: faint 1px graticule lines (`--line` at low alpha) as section backdrop in hero/diagram only.
 - Z-scale: nav 40 · overlay 50 · toast 60 · tooltip 70.
 
+## Logo — the ARISE mark ("signal rise")
+
+The A of ARISE drawn as a chart peak breaking above its baseline: one horizontal stroke is simultaneously the chart baseline and the A's crossbar; a cyan dot (`--brand`) at the apex is the sensed signal. Reads four ways at once — the letter A, a risk signal spiking above the noise floor (what OMEN does), a peak (= arise), a beacon light. Two size cuts, one geometry:
+
+- **Display cut** (`arise-mark.tsx`, header ≥24px / footer / OG image): hairline bezel ring (same instrument language as the diagram nodes), strokes in `currentColor` so it adapts to theme, apex dot + soft halo in `--brand`. The halo breathes (`mark-halo-breathe`, 3.6s ease-in-out; static under reduced motion) — same liveness cue as the LIVE pill.
+- **Tile cut** (`app/icon.svg` favicon, `app/apple-icon.tsx`): no ring — the navy tile is the container; strokes ~30% bolder for 16px legibility. Hex approximations of the tokens (SVG file / Satori can't resolve CSS vars).
+
+Lockup: mark + "ARISE" in the display face (`heading-type`, wght 650) at `letter-spacing: 0.14em` (signage voice). The wordmark never appears without the mark in nav/OG contexts.
+
 ## Components
 
 - **Buttons**: primary = amber fill (`--brand`/`--brand-ink`), radius 999px, weight 600; secondary = 1px `--line-strong` outline, ink text. Focus: 2px `--brand-strong` outline, offset 2px.

@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Content } from "@/content/types";
 import { BackToTop } from "./back-to-top";
-import { BeaconMark } from "./beacon-mark";
+import { AriseMark } from "./arise-mark";
 import { BrandIcon } from "./brand-icons";
 import { CopyEmail } from "./copy-email";
 import { LocaleLink } from "./locale-link";
@@ -91,7 +91,7 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
 
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
           <p className="mono-label flex items-center gap-2 text-faint">
-            <BeaconMark className="size-4" />
+            <AriseMark className="size-4" />
             {f.builtNote}
           </p>
           <LocaleLink

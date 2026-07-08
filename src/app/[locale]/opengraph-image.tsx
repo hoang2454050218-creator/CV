@@ -47,15 +47,20 @@ export default async function OpenGraphImage({
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div
-            style={{
-              width: 28,
-              height: 28,
-              borderRadius: 999,
-              background: CYAN,
-              display: "flex",
-            }}
-          />
+          {/* ARISE mark — signal-rise A, same geometry as arise-mark.tsx */}
+          <svg width={44} height={44} viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="15" stroke="#4a5680" strokeWidth="1.3" />
+            <path d="M5.2 19.6h21.6" stroke="#7c89ad" strokeWidth="1.5" strokeLinecap="round" />
+            <path
+              d="M10.1 24.4 16 7.6l5.9 16.8"
+              stroke={INK}
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="16" cy="7.6" r="5" fill={CYAN} opacity="0.18" />
+            <circle cx="16" cy="7.6" r="2.3" fill={CYAN} />
+          </svg>
           <div style={{ display: "flex", fontSize: 34, fontWeight: 600, color: INK, letterSpacing: 4 }}>
             ARISE
           </div>
