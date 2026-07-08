@@ -634,10 +634,29 @@ html[data-anim="1"] .anim-rise {
   animation: rise 0.7s var(--ease-out-expo) both;
 }
 
-/* Scroll reveals are deliberately absent: any hide-then-show mechanism
-   blanks content in print, full-page screenshots, and headless renderers.
-   The page's motion lives in the hero entrance, the diagram pulses, and
-   interactions — content below the fold is always instantly readable. */
+/* Scroll reveal — content is server-rendered fully visible; JS adds
+   .will-reveal ONLY in a visible tab for below-the-fold elements, then
+   .revealed on intersection (with a fail-safe timer). Print always wins. */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.65s var(--ease-out-expo),
+    transform 0.65s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.will-reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media print {
+  .will-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 
 /* diagram text styles (SVG <text>) */
 .diagram-mono {

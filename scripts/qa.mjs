@@ -46,6 +46,17 @@ for (const c of cases) {
   await page.goto(BASE + c.url, { waitUntil: "networkidle0", timeout: 30000 });
   await new Promise((r) => setTimeout(r, 1600)); // let entrance animations settle
 
+  // scroll through the page so IO-based reveals fire before the capture
+  await page.evaluate(async () => {
+    const step = window.innerHeight * 0.8;
+    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 90));
+    }
+    window.scrollTo(0, 0);
+  });
+  await new Promise((r) => setTimeout(r, 900));
+
   const metrics = await page.evaluate(() => ({
     overflowX: document.documentElement.scrollWidth - window.innerWidth,
     title: document.title,
