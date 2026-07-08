@@ -10,7 +10,7 @@
   /* runtime font stacks — next/font variables live on <html>, so these
      resolve at :root and stay usable from plain CSS (not just utilities) */
   --font-stack-sans: var(--font-body), system-ui, sans-serif;
-  --font-stack-display: var(--font-display-sub), var(--font-display), var(--font-body), system-ui, sans-serif;
+  --font-stack-display: var(--font-display-sub), var(--font-body), system-ui, sans-serif;
   --font-stack-mono: var(--font-mono-var), ui-monospace, monospace;
 
   /* palette is identity-locked to the product logos:
@@ -170,17 +170,17 @@ p {
 }
 
 .display-type {
-  /* micro-subset first (tiny, arrives ~instantly), full Sora as
-     per-glyph fallback for characters outside the subset */
+  /* micro-subset first (tiny, arrives ~instantly, REAL 700 weight), full
+     Be Vietnam Pro as per-glyph fallback for characters outside the subset */
   font-family: var(--font-stack-display);
   font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.06;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
 }
 
 .heading-type {
   font-family: var(--font-stack-display);
-  font-weight: 650;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.12;
 }
@@ -188,12 +188,12 @@ p {
 .mono-label {
   font-family: var(--font-stack-mono);
   font-size: 0.8125rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
 }
 
 .measure {
-  max-width: 68ch;
+  max-width: 62ch;
 }
 
 /* timeline: glowing gradient rail that draws itself with scroll where
@@ -754,7 +754,7 @@ html[data-anim="1"] .anim-rise {
 .diagram-name {
   font-family: var(--font-stack-display);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15.5px;
   letter-spacing: 0.05em;
 }
 

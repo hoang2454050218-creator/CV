@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Roboto_Mono, Space_Grotesk } from "next/font/google";
+import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
 import { redirect } from "next/navigation";
 import { ThemeProvider } from "next-themes";
 import { getContent } from "@/content";
@@ -19,19 +19,13 @@ const beVietnam = Be_Vietnam_Pro({
   preload: false,
 });
 
-// Display/headings: Space Grotesk — geometric-futuristic, and (recently)
-// full Vietnamese support, so the requested display face is safe to use.
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-display",
-  display: "swap",
-  preload: false,
-});
-
-// Micro-subset of Space Grotesk for the LCP headline: full EN alphabet +
-// digits + punctuation + complete Vietnamese diacritics in one tiny
-// preloaded file; other characters fall back per-glyph to the full face.
-const spaceGroteskDisplay = Space_Grotesk({
+// Micro-subset of Be Vietnam Pro Bold for the LCP headline: full EN
+// alphabet + digits + punctuation + complete Vietnamese diacritics in one
+// tiny preloaded file at the REAL 700 weight (a variable-font text-subset
+// previously came back as a Light instance and the browser faux-bolded
+// it — the "uneven strokes" bug). Other glyphs fall back to the full face.
+const bvpDisplay = Be_Vietnam_Pro({
+  weight: "700",
   // @ts-expect-error -- `text` is a documented next/font option (subsets the
   // font to these characters); the generated per-font types omit it
   text: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,;:!?'‘’“”…()%–—·-→àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰỲÝỶỸỴĐ",
@@ -39,8 +33,8 @@ const spaceGroteskDisplay = Space_Grotesk({
   display: "swap",
 });
 
-// Roboto Mono (not Geist Mono): the machine-voice font must cover Vietnamese
-const robotoMono = Roboto_Mono({
+// JetBrains Mono (variable, has a real Vietnamese subset) — machine voice
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin", "vietnamese"],
   variable: "--font-mono-var",
   display: "swap",
@@ -96,7 +90,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${beVietnam.variable} ${spaceGrotesk.variable} ${spaceGroteskDisplay.variable} ${robotoMono.variable}`}
+      className={`${beVietnam.variable} ${bvpDisplay.variable} ${jetbrainsMono.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
