@@ -47,13 +47,14 @@ for (const c of cases) {
   await new Promise((r) => setTimeout(r, 1600)); // let entrance animations settle
 
   // scroll through the page so IO-based reveals fire before the capture
+  // (behavior:'instant' — CSS smooth scrolling would swallow rapid scrollTo calls)
   await page.evaluate(async () => {
     const step = window.innerHeight * 0.8;
     for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
-      window.scrollTo(0, y);
+      window.scrollTo({ top: y, behavior: "instant" });
       await new Promise((r) => setTimeout(r, 90));
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   });
   await new Promise((r) => setTimeout(r, 900));
 
