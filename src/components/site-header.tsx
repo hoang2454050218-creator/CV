@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Locale } from "@/i18n/config";
 import type { NavContent } from "@/content/types";
 import { BeaconMark } from "./beacon-mark";
@@ -10,9 +10,42 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader({ locale, nav }: { locale: Locale; nav: NavContent }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // active-section indicator
+  useEffect(() => {
+    const sections = nav.items
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!sections.length) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveId(visible.target.id);
+      },
+      { rootMargin: "-35% 0px -55% 0px" },
+    );
+    for (const section of sections) io.observe(section);
+    return () => io.disconnect();
+  }, [nav.items]);
 
   return (
-    <header className="sticky top-0 border-b border-line bg-bg" style={{ zIndex: "var(--z-nav)" }}>
+    <header
+      className="header-glass sticky top-0 border-b border-line"
+      data-scrolled={scrolled}
+      style={{ zIndex: "var(--z-nav)" }}
+    >
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-brand-ink"
@@ -35,7 +68,8 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: NavContent })
             <a
               key={item.id}
               href={`/${locale}#${item.id}`}
-              className="text-[0.9375rem] font-medium text-muted transition-colors hover:text-ink"
+              data-active={activeId === item.id}
+              className="nav-link text-[0.9375rem] font-medium text-muted transition-colors hover:text-ink"
             >
               {item.label}
             </a>
@@ -47,7 +81,7 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: NavContent })
           <ThemeToggle labels={nav.themeToggleAria} />
           <a
             href={`/${locale}#contact`}
-            className="hidden rounded-full bg-brand px-4 py-1.5 text-[0.9375rem] font-semibold text-brand-ink transition-opacity hover:opacity-85 lg:inline-block"
+            className="shine cta-glow hidden rounded-full bg-brand px-4 py-1.5 text-[0.9375rem] font-semibold text-brand-ink lg:inline-block"
           >
             {nav.contactCta}
           </a>
@@ -75,27 +109,28 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: NavContent })
         id="mobile-nav"
         aria-label={nav.mainNavAria}
         hidden={!open}
-        className="border-t border-line bg-bg lg:hidden"
+        className="header-glass border-t border-line lg:hidden"
+        data-scrolled="true"
       >
         <div className="container-page flex flex-col py-3">
-            {nav.items.map((item) => (
-              <a
-                key={item.id}
-                href={`/${locale}#${item.id}`}
-                onClick={() => setOpen(false)}
-                className="border-b border-line py-3 text-[1rem] font-medium text-muted last:border-b-0 hover:text-ink"
-              >
-                {item.label}
-              </a>
-            ))}
+          {nav.items.map((item) => (
             <a
-              href={`/${locale}#contact`}
+              key={item.id}
+              href={`/${locale}#${item.id}`}
               onClick={() => setOpen(false)}
-              className="mt-3 self-start rounded-full bg-brand px-5 py-2 font-semibold text-brand-ink"
+              className="border-b border-line py-3 text-[1rem] font-medium text-muted last:border-b-0 hover:text-ink"
             >
-              {nav.contactCta}
+              {item.label}
             </a>
-          </div>
+          ))}
+          <a
+            href={`/${locale}#contact`}
+            onClick={() => setOpen(false)}
+            className="mt-3 self-start rounded-full bg-brand px-5 py-2 font-semibold text-brand-ink"
+          >
+            {nav.contactCta}
+          </a>
+        </div>
       </nav>
     </header>
   );

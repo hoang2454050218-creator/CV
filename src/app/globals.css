@@ -196,6 +196,45 @@ p {
   max-width: 68ch;
 }
 
+/* nav links: underline grows from the left; active section stays lit */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--brand-strong), var(--accent));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+.nav-link[data-active="true"] {
+  color: var(--ink);
+}
+
+/* glass header: translucent by default, more solid after scrolling */
+.header-glass {
+  background: color-mix(in oklch, var(--bg) 62%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background 0.4s var(--ease-out-expo);
+}
+
+.header-glass[data-scrolled="true"] {
+  background: color-mix(in oklch, var(--bg) 88%, transparent);
+}
+
 /* ── deep-space backdrop layers (mounted once in the locale layout) ── */
 
 /* aurora mesh: three slow blobs — cyan, product-blue, one restrained violet */
