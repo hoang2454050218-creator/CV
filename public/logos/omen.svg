@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300" role="img" aria-label="OMEN mark"><title>OMEN Mark</title><defs>
+    <linearGradient id="egun" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="#454c56"/><stop offset="0.5" stop-color="#22262d"/><stop offset="1" stop-color="#0b0d10"/></linearGradient>
+    <linearGradient id="eedge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c8794"/><stop offset="0.5" stop-color="#2b3138"/><stop offset="1" stop-color="#090b0e"/></linearGradient>
+    <filter id="esh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#000" flood-opacity="0.55"/></filter>
+    <filter id="emt" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur in="SourceAlpha" stdDeviation="2.2" result="b"/><feSpecularLighting in="b" surfaceScale="3" specularConstant="0.85" specularExponent="15" lighting-color="#d6deea" result="s"><fePointLight x="70" y="10" z="130"/></feSpecularLighting><feComposite in="s" in2="SourceAlpha" operator="in" result="sc"/><feComposite in="SourceGraphic" in2="sc" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/></filter>
+    <radialGradient id="egg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#22d3ee" stop-opacity="0.85"/><stop offset="60%" stop-color="#22d3ee" stop-opacity="0.18"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+    <linearGradient id="egb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecfeff"/><stop offset="38%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#0e7490"/></linearGradient>
+</defs>
+    <g filter="url(#esh)"><g filter="url(#emt)">
+      <path fill="url(#egun)" stroke="url(#eedge)" stroke-width="1.5" stroke-linejoin="round" d="M146 16 L36 150 L146 284 L146 236 L90 150 L146 64 Z"/>
+      <path fill="url(#egun)" stroke="url(#eedge)" stroke-width="1.5" stroke-linejoin="round" d="M154 16 L264 150 L154 284 L154 236 L210 150 L154 64 Z"/>
+    </g></g>
+    <g fill="none" stroke="#828f9f" stroke-width="1.6" opacity="0.7" stroke-linecap="round"><path d="M146 20 L40 150"/><path d="M154 20 L260 150"/></g>
+    <g fill="none" stroke="#05070a" stroke-width="1.4" opacity="0.8" stroke-linejoin="round"><path d="M146 64 L90 150 L146 236"/><path d="M154 64 L210 150 L154 236"/></g>
+    <g fill="none" stroke="#05070a" stroke-width="4" opacity="0.55" stroke-linecap="round"><path d="M96 108 L120 108"/><path d="M96 192 L120 192"/><path d="M180 108 L204 108"/><path d="M180 192 L204 192"/></g>
+    <circle cx="150" cy="150" r="40" fill="url(#egg)"/>
+    <path d="M150 112 L164 150 L150 188 L136 150 Z" fill="url(#egb)"/>
+    <path d="M150 112 L150 188 L136 150 Z" fill="#ffffff" opacity="0.16"/>
+    <path d="M150 112 L164 150 L150 150 Z" fill="#000000" opacity="0.12"/>
+    <circle cx="150" cy="150" r="3.2" fill="#ffffff"/>
+</svg>

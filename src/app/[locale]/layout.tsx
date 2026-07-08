@@ -5,6 +5,8 @@ import { ThemeProvider } from "next-themes";
 import { getContent } from "@/content";
 import { defaultLocale, isLocale, locales, type Locale } from "@/i18n/config";
 import { SITE_URL } from "@/lib/site";
+import { Backdrop } from "@/components/backdrop";
+import { EffectsProvider } from "@/components/effects-provider";
 import "../globals.css";
 
 // latin + vietnamese only: latin-ext adds ~25% payload for glyphs the site
@@ -104,6 +106,8 @@ export default async function RootLayout({
       </head>
       <body className="bg-bg font-sans text-ink">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Backdrop />
+          <EffectsProvider />
           {children}
         </ThemeProvider>
       </body>

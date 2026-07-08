@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">VANTIS mark</title>
+  <defs>
+    <linearGradient id="left" x1="15" x2="34" y1="8" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2D5C"/>
+      <stop offset="1" stop-color="#0B1733"/>
+    </linearGradient>
+    <linearGradient id="stripe" x1="30" x2="55" y1="50" y2="10" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2D5C"/>
+      <stop offset="1" stop-color="#6EE7D4"/>
+    </linearGradient>
+    <linearGradient id="bolt" x1="27" x2="43" y1="13" y2="39" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6FAFF"/>
+      <stop offset="1" stop-color="#8FF0DC"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#left)" d="M8 8h15.8l16.6 39.6L31 56 8 8Z"/>
+  <path fill="#4B6AB8" opacity=".34" d="M10.5 10h11.6l3.4 8.3H13.9L10.5 10Z"/>
+  <g fill="url(#stripe)">
+    <path opacity=".72" d="M42 8h14l-4.5 7.9H38.4L42 8Z"/>
+    <path opacity=".78" d="M37.6 18.1h13l-4.1 7.4H34l3.6-7.4Z"/>
+    <path opacity=".84" d="M32.4 28h12.2l-4.1 7.2H29l3.4-7.2Z"/>
+    <path opacity=".9" d="M28.1 37.7h11l-4 7.2H24.7l3.4-7.2Z"/>
+    <path d="M23.5 47.5h10.2L29 56H19.8l3.7-8.5Z"/>
+  </g>
+  <path fill="url(#bolt)" d="M43.6 12.2 25.8 25.8l8.7 3.2-9.3 19.2 20.1-25-9.2-2.7 7.5-8.3Z"/>
+</svg>

@@ -29,6 +29,13 @@
   --accent-ink: oklch(1 0 0);
   --accent-fill: oklch(0.46 0.09 178);
 
+  /* per-product accents (light-mode readable variants) */
+  --acc-omen: oklch(0.55 0.11 220);
+  --acc-vantis: oklch(0.5 0.09 178);
+  --acc-nexquote: oklch(0.45 0.12 252);
+  --violet: oklch(0.5 0.16 295);
+  --bg-deep: oklch(0.985 0.006 245);
+
   --z-nav: 40;
   --z-overlay: 50;
   --z-toast: 60;
@@ -40,12 +47,13 @@
 }
 
 .dark {
-  /* deep-water navy from the VANTIS mark, cyan signal from OMEN */
-  --bg: oklch(0.148 0.03 262);
-  --surface: oklch(0.183 0.034 260);
-  --surface-2: oklch(0.222 0.037 258);
-  --line: oklch(0.305 0.04 255);
-  --line-strong: oklch(0.43 0.045 250);
+  /* deep-space navy: darker than the VANTIS mark itself so the logos glow */
+  --bg: oklch(0.13 0.028 265);
+  --bg-deep: oklch(0.105 0.022 270);
+  --surface: oklch(0.168 0.032 262);
+  --surface-2: oklch(0.207 0.036 258);
+  --line: oklch(0.29 0.04 255);
+  --line-strong: oklch(0.42 0.045 250);
   --ink: oklch(0.95 0.012 230);
   --muted: oklch(0.75 0.032 235);
   --faint: oklch(0.63 0.038 238);
@@ -55,6 +63,12 @@
   --accent: oklch(0.83 0.095 175);
   --accent-ink: oklch(0.17 0.04 200);
   --accent-fill: oklch(0.66 0.1 175);
+
+  /* per-product accents, sampled from the real logo files */
+  --acc-omen: oklch(0.78 0.13 210);
+  --acc-vantis: oklch(0.85 0.09 175);
+  --acc-nexquote: oklch(0.68 0.12 245);
+  --violet: oklch(0.6 0.17 295);
 
   color-scheme: dark;
 }
@@ -89,13 +103,33 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: linear-gradient(to bottom, var(--bg-deep, var(--bg)), var(--bg) 40rem) fixed var(--bg);
   color: var(--ink);
   font-family: var(--font-stack-sans);
   font-size: 1.0625rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* thin dark scrollbar + accent selection (selection set below) */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .dark body {
@@ -160,6 +194,281 @@ p {
 
 .measure {
   max-width: 68ch;
+}
+
+/* ── deep-space backdrop layers (mounted once in the locale layout) ── */
+
+/* aurora mesh: three slow blobs — cyan, product-blue, one restrained violet */
+@keyframes aurora-drift-a {
+  0%, 100% { transform: translate3d(-4%, -2%, 0) scale(1); }
+  50% { transform: translate3d(5%, 6%, 0) scale(1.12); }
+}
+
+@keyframes aurora-drift-b {
+  0%, 100% { transform: translate3d(3%, 4%, 0) scale(1.08); }
+  50% { transform: translate3d(-6%, -3%, 0) scale(0.95); }
+}
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+html:not(.dark) .aurora {
+  opacity: 0.55;
+}
+
+.aurora::before,
+.aurora::after,
+.aurora > i {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(110px);
+  will-change: transform;
+}
+
+.aurora::before {
+  width: 46vw;
+  height: 46vw;
+  top: -12vw;
+  left: -8vw;
+  background: color-mix(in oklch, var(--brand-strong) 16%, transparent);
+  animation: aurora-drift-a 52s ease-in-out infinite;
+}
+
+.aurora::after {
+  width: 40vw;
+  height: 40vw;
+  top: 30vh;
+  right: -12vw;
+  background: color-mix(in oklch, var(--acc-nexquote) 18%, transparent);
+  animation: aurora-drift-b 64s ease-in-out infinite;
+}
+
+.aurora > i {
+  width: 34vw;
+  height: 34vw;
+  bottom: -14vw;
+  left: 28vw;
+  background: color-mix(in oklch, var(--violet) 10%, transparent);
+  animation: aurora-drift-a 74s ease-in-out infinite reverse;
+}
+
+/* faint page-wide graticule, fading toward the center */
+.page-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--ink) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--ink) 4%, transparent) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, transparent 25%, black 100%);
+}
+
+/* film grain so surfaces don't read as flat plastic */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 2px scroll progress bar — CSS scroll-driven, no JS, hidden if unsupported */
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.scroll-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: var(--z-toast);
+    transform-origin: 0 50%;
+    background: linear-gradient(90deg, var(--brand-strong), var(--accent));
+    animation: grow-progress linear both;
+    animation-timeline: scroll(root);
+    pointer-events: none;
+  }
+}
+
+/* glass surface — token-driven so it adapts to both themes */
+.glass {
+  background: color-mix(in oklch, var(--ink) 4%, transparent);
+  border: 1px solid color-mix(in oklch, var(--ink) 13%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* pointer spotlight border — JS sets --mx/--my on [data-spotlight] */
+[data-spotlight] {
+  position: relative;
+}
+
+[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    220px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklch, var(--card-accent, var(--brand-strong)) 65%, transparent),
+    transparent 72%
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+[data-spotlight]:hover::before {
+  opacity: 1;
+}
+
+/* shimmer border sweep (LIVE pill) */
+@keyframes shimmer-sweep {
+  to { transform: rotate(360deg); }
+}
+
+.shimmer-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-border::before {
+  content: "";
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 300deg,
+    color-mix(in oklch, var(--brand-strong) 85%, transparent) 340deg,
+    transparent 360deg
+  );
+  animation: shimmer-sweep 5s linear infinite;
+  pointer-events: none;
+}
+
+.shimmer-border::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--surface);
+  pointer-events: none;
+}
+
+.shimmer-border > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* CTA shine sweep on hover */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -80%;
+  width: 55%;
+  background: linear-gradient(105deg, transparent, rgb(255 255 255 / 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.shine:hover::after {
+  left: 125%;
+}
+
+/* infinite tools marquee — duplicated track, pauses on hover */
+@keyframes marquee-x {
+  to { transform: translateX(-50%); }
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: marquee-x 36s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* scroll hint at the bottom of the hero */
+@keyframes hint-drop {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  60% { transform: translateY(7px); opacity: 0.3; }
+}
+
+.scroll-hint-dot {
+  animation: hint-drop 2.2s var(--ease-out-expo) infinite;
+}
+
+/* back-to-top button */
+.back-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: var(--z-nav);
+  opacity: 0;
+  translate: 0 10px;
+  transition: opacity 0.4s var(--ease-out-expo), translate 0.4s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.back-top.visible {
+  opacity: 1;
+  translate: 0 0;
+  pointer-events: auto;
+}
+
+/* glass toast (copy email) */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  translate: -50% 12px;
+  z-index: var(--z-toast);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out-expo), translate 0.35s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  translate: -50% 0;
 }
 
 /* faint chart graticule backdrop (hero / diagram only) */
@@ -336,15 +645,34 @@ html[data-anim="1"] .anim-rise {
   .radar-sweep,
   .signal-ping,
   .anim-rise,
-  html[data-anim="1"] .anim-rise {
+  html[data-anim="1"] .anim-rise,
+  .aurora::before,
+  .aurora::after,
+  .aurora > i,
+  .shimmer-border::before,
+  .marquee-track,
+  .scroll-hint-dot,
+  .scroll-progress {
     animation: none;
   }
-  .radar-sweep {
+  .radar-sweep,
+  .shimmer-border::before {
     display: none;
   }
   .signal-ping {
     opacity: 0.5;
     transform: scale(1);
+  }
+  .marquee {
+    mask-image: none;
+    overflow-x: auto;
+  }
+  .marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+  }
+  .marquee-track > [aria-hidden="true"] {
+    display: none;
   }
   .will-reveal {
     opacity: 1;
