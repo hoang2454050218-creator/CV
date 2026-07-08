@@ -2,14 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * The single primary email action: shows the address with an integrated
+ * copy icon; on click it copies to the clipboard and swaps to a ✓ +
+ * confirmation for 2s. min-width is pinned so the swap never shifts layout.
+ */
 export function CopyEmail({
   email,
-  label,
-  toastText,
+  copiedText,
+  ariaLabel,
 }: {
   email: string;
-  label: string;
-  toastText: string;
+  copiedText: string;
+  ariaLabel: string;
 }) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<number>(0);
@@ -21,32 +26,32 @@ export function CopyEmail({
       await navigator.clipboard.writeText(email);
       setCopied(true);
       window.clearTimeout(timer.current);
-      timer.current = window.setTimeout(() => setCopied(false), 2200);
+      timer.current = window.setTimeout(() => setCopied(false), 2000);
     } catch {
-      // clipboard unavailable (permissions/http) — the mailto link still works
+      // clipboard unavailable — select-and-copy still possible from the CV
     }
   };
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={copy}
-        className="cta-glow inline-flex items-center gap-2 rounded-full border border-line-strong px-4 py-2.5 text-sm font-semibold text-ink"
-      >
-        <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
+    <button
+      type="button"
+      onClick={copy}
+      aria-label={ariaLabel}
+      aria-live="polite"
+      className="shine cta-glow inline-flex items-center justify-center gap-2.5 rounded-full bg-brand px-6 py-2.5 font-semibold text-brand-ink"
+      style={{ minWidth: `${email.length + 4}ch` }}
+    >
+      {copied ? (
+        <svg viewBox="0 0 16 16" className="size-4 shrink-0" fill="none" aria-hidden="true">
+          <path d="M2.5 8.5 6 12 13.5 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 16 16" className="size-4 shrink-0" fill="none" aria-hidden="true">
           <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
           <path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5" stroke="currentColor" strokeWidth="1.4" />
         </svg>
-        {label}
-      </button>
-      <div
-        role="status"
-        aria-live="polite"
-        className={`toast glass rounded-full px-5 py-2.5 text-sm font-semibold text-ink ${copied ? "show" : ""}`}
-      >
-        {copied ? toastText : ""}
-      </div>
-    </>
+      )}
+      <span>{copied ? copiedText : email}</span>
+    </button>
   );
 }
