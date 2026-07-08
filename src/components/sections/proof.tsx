@@ -1,4 +1,5 @@
 import type { Content } from "@/content/types";
+import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 
 /**
@@ -28,7 +29,7 @@ export function Proof({ content }: { content: Content }) {
                           row.channel === "accent" ? "text-accent" : "text-brand-strong"
                         }`}
                       >
-                        {row.value}
+                        <CountUp value={row.value} />
                       </p>
                       <div>
                         <p className="font-semibold text-ink">{row.label}</p>
