@@ -35,9 +35,9 @@ export const vi: Content = {
     livePill: "ĐANG CHẠY PRODUCTION",
     liveDetail: "3 service · tín hiệu thật · từ giữa 2026",
     kicker: "Bùi Xuân Hoàng — founder, người xây dựng duy nhất",
-    headline: "Tôi xây một nền tảng dự báo rủi ro cho vận tải toàn cầu. Một mình. Trong bảy tháng.",
+    headline: "Bảy tháng. Một người. Ba hệ thống đang vận hành — đọc rủi ro của thế giới, và định giá nó.",
     subheadline:
-      "Tôi là sinh viên logistics năm hai, tự học để làm được phần mềm thật. ARISE là kết quả: ba service đang chạy production — cảm nhận rủi ro của thế giới, dự báo tác động lên tuyến vận tải, và định giá lô hàng — được xây dựng một mình bằng cách chỉ huy các AI coding agent dưới một kỷ luật kỹ thuật do tôi thiết kế.",
+      "Sinh viên logistics năm hai, tự học kỹ thuật phần mềm. Tôi chỉ huy các AI coding agent như một đội ngũ kỹ sư — dưới kỷ luật do chính tôi thiết kế — để xây ARISE: OMEN cảm nhận thế giới, VANTIS dự báo rủi ro, NEXQUOTE định giá lô hàng. Cả ba đang chạy trên hạ tầng thật, phục vụ tín hiệu thật.",
     lookingForLabel: "Đang tìm kiếm",
     lookingFor: ["Vốn đầu tư seed", "Design partner trong ngành logistics"],
     ctaExplore: "Khám phá ARISE",

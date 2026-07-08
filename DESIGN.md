@@ -56,10 +56,11 @@ Rule: components use `--brand-strong` for anything that must read against `--bg`
 
 ## Typography
 
-- **Archivo** (variable: wght + wdth axes) — single family, committed contrast. Display: wdth ≈ 120 (expanded, port-signage energy), wght 600–650, tracking −0.02em. Body: wdth 100, wght 400–500. Headings use `text-wrap: balance`.
+- **Space Grotesk** (variable wght, has Vietnamese) — display + headings: geometric-futuristic. Display wght 700, tracking −0.025em; h2 wght 650, tracking −0.02em. Headings use `text-wrap: balance`.
+- **Be Vietnam Pro** (static 400/500/600/700) — body voice, drawn for Vietnamese diacritics.
 - **Roboto Mono** (Geist Mono lacks Vietnamese glyphs) — machine voice only: timestamps, metrics, provenance labels, scorecard rows. Never body copy or instructional sentences. Labels ≤ 0.875rem at `letter-spacing: 0.05em`; the one sanctioned exception is evidence-ledger VALUES (proof section), which render as large tabular numerals (1.75rem) — they are data, not labels.
 - Scale (fluid): display `clamp(2.4rem, 1rem + 5.6vw, 4.75rem)` (ceiling lowered from the original spec so the long two-sentence headline holds 3–4 lines at desktop); h2 `clamp(1.9rem, 1rem + 3vw, 3rem)`; h3 `1.35rem`; body `1.0625rem/1.7` (dark) `1.65` (light); mono label `0.8125rem`.
-- LCP note: `.display-type` loads a ~10KB micro-subset of Archivo first (full EN alphabet + Vietnamese diacritics), falling back per-glyph to the full family.
+- LCP note: `.display-type` loads a tiny `text=` micro-subset of Space Grotesk first (full EN alphabet + Vietnamese diacritics, the only preloaded font), falling back per-glyph to the full family.
 - Body measure ≤ 68ch. Vietnamese subset REQUIRED on both families.
 
 ## Spacing & layout

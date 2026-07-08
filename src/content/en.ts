@@ -35,9 +35,9 @@ export const en: Content = {
     livePill: "LIVE IN PRODUCTION",
     liveDetail: "3 services · real signals · since mid-2026",
     kicker: "Bùi Xuân Hoàng — founder, sole builder",
-    headline: "I built a live risk-intelligence platform for global freight. Alone. In seven months.",
+    headline: "Seven months. One person. Three systems in production — reading the world's risk, and pricing it.",
     subheadline:
-      "I'm a second-year logistics student who taught himself to ship software. ARISE is the result: three production services that sense the world's risk, predict its impact on freight routes, and price shipments — built solo by directing AI coding agents under an engineering discipline I designed.",
+      "Second-year logistics student, self-taught in software. I direct AI coding agents like an engineering team — under a discipline I designed — to build ARISE: OMEN senses the world, VANTIS predicts the risk, NEXQUOTE prices the shipment. All three run on real infrastructure, serving real signals.",
     lookingForLabel: "Currently looking for",
     lookingFor: ["Seed investment", "Design partners in logistics"],
     ctaExplore: "Explore ARISE",

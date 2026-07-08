@@ -9,7 +9,8 @@
 :root {
   /* runtime font stacks — next/font variables live on <html>, so these
      resolve at :root and stay usable from plain CSS (not just utilities) */
-  --font-stack-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-stack-sans: var(--font-body), system-ui, sans-serif;
+  --font-stack-display: var(--font-display-sub), var(--font-display), var(--font-body), system-ui, sans-serif;
   --font-stack-mono: var(--font-mono-var), ui-monospace, monospace;
 
   /* palette is identity-locked to the product logos:
@@ -169,20 +170,19 @@ p {
 }
 
 .display-type {
-  /* micro-subset first (tiny, arrives ~instantly), full Archivo as
+  /* micro-subset first (tiny, arrives ~instantly), full Sora as
      per-glyph fallback for characters outside the subset */
-  font-family: var(--font-archivo-display), var(--font-archivo), system-ui, sans-serif;
-  font-weight: 640;
-  font-stretch: 120%;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
+  font-family: var(--font-stack-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
 }
 
 .heading-type {
-  font-weight: 620;
-  font-stretch: 112%;
-  letter-spacing: -0.015em;
-  line-height: 1.1;
+  font-family: var(--font-stack-display);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
 }
 
 .mono-label {
@@ -667,11 +667,10 @@ html[data-anim="1"] .anim-rise {
 }
 
 .diagram-name {
-  font-family: var(--font-stack-sans);
-  font-weight: 650;
-  font-stretch: 118%;
-  font-size: 17px;
-  letter-spacing: 0.04em;
+  font-family: var(--font-stack-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.05em;
 }
 
 /* node dashed ring breathes */

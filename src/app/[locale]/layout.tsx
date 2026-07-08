@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Roboto_Mono } from "next/font/google";
+import { Be_Vietnam_Pro, Roboto_Mono, Space_Grotesk } from "next/font/google";
 import { redirect } from "next/navigation";
 import { ThemeProvider } from "next-themes";
 import { getContent } from "@/content";
@@ -9,29 +9,33 @@ import { Backdrop } from "@/components/backdrop";
 import { EffectsProvider } from "@/components/effects-provider";
 import "../globals.css";
 
-// latin + vietnamese only: latin-ext adds ~25% payload for glyphs the site
-// never renders, and the font is on the LCP critical path
-// preload: false — only the 10KB display micro-subset below is preloaded;
-// body text swaps in from a metrics-matched fallback, keeping FCP/LCP fast
-const archivo = Archivo({
+// Body: Be Vietnam Pro — drawn FOR Vietnamese; diacritics are first-class.
+// Static weights (not variable): load only the four the site uses.
+const beVietnam = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
-  variable: "--font-archivo",
-  axes: ["wdth"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
   display: "swap",
   preload: false,
 });
 
-// Micro-subset of Archivo for display type (the LCP headline): full EN
-// alphabet + digits + punctuation + complete Vietnamese diacritics in one
-// tiny file, so the hero renders in the brand font almost immediately.
-// Any character outside this set falls back per-glyph to the full Archivo
-// above — same typeface, just a later arrival.
-const archivoDisplay = Archivo({
+// Display/headings: Space Grotesk — geometric-futuristic, and (recently)
+// full Vietnamese support, so the requested display face is safe to use.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-display",
+  display: "swap",
+  preload: false,
+});
+
+// Micro-subset of Space Grotesk for the LCP headline: full EN alphabet +
+// digits + punctuation + complete Vietnamese diacritics in one tiny
+// preloaded file; other characters fall back per-glyph to the full face.
+const spaceGroteskDisplay = Space_Grotesk({
   // @ts-expect-error -- `text` is a documented next/font option (subsets the
   // font to these characters); the generated per-font types omit it
   text: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,;:!?'‘’“”…()%–—·-→àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰỲÝỶỸỴĐ",
-  variable: "--font-archivo-display",
-  axes: ["wdth"],
+  variable: "--font-display-sub",
   display: "swap",
 });
 
@@ -92,7 +96,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${archivo.variable} ${archivoDisplay.variable} ${robotoMono.variable}`}
+      className={`${beVietnam.variable} ${spaceGrotesk.variable} ${spaceGroteskDisplay.variable} ${robotoMono.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
