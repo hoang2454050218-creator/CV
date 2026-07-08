@@ -248,30 +248,30 @@ export const en: Content = {
   },
 
   skills: {
-    eyebrow: "Stack",
-    heading: "Skills",
+    eyebrow: "Capability",
+    heading: "Capabilities",
     intro:
-      "Grouped and honest — everything below is in production code I direct and can explain line by line.",
+      "My edge is orchestrating AI, design, and system architecture — not hand-typing code. I brief, design, review, and control quality; AI implements under the discipline I set. The stack below is what I direct, not my personal hands-on craft.",
     groups: [
       {
-        name: "Backend",
-        items: ["Python", "FastAPI", "Django 5 / DRF", "Celery", "Pydantic v2", "async SQLAlchemy", "PostgreSQL", "Redis"],
+        name: "AI Orchestration",
+        items: ["Claude Code", "GPT", "Cursor", "Briefing & specs", "Adversarial review", "Quality control", "TDD-first"],
       },
       {
-        name: "Frontend",
-        items: ["TypeScript", "React 19", "Vue 3", "Vite", "Tailwind CSS", "Radix UI", "Pinia"],
+        name: "Design & Creative",
+        items: ["Product & UI/UX", "Brand & identity", "Design systems & tokens", "Creative direction", "Landing & storytelling"],
       },
       {
-        name: "Data & AI",
-        items: ["Signal fusion & provenance", "Prediction calibration", "Evaluation & scorecards", "AI-agent orchestration", "Prompt & context engineering"],
+        name: "System Architecture",
+        items: ["Architecture design", "Data flows & APIs", "Cross-product integration", "Fail-closed security", "Deterministic money paths"],
       },
       {
-        name: "Infra & DevOps",
-        items: ["Docker", "Kubernetes-ready services", "CI/CD (GitHub Actions)", "CodeQL / Trivy / Dependabot", "SBOM + cosign signing", "Playwright E2E"],
+        name: "Product & Operations",
+        items: ["Idea → live, end to end", "Product strategy", "CI/CD & release (directed)", "Growth"],
       },
       {
-        name: "Product & Domain",
-        items: ["Freight quoting workflows", "Route risk & port operations", "Tariff / trade actions", "Logistics SME operations", "Bilingual product (EN/VN)"],
+        name: "Logistics domain",
+        items: ["Supply chain", "Freight quoting", "Route & port risk", "Tariffs", "SME operations"],
       },
     ],
     consoleLabel: "Capability console",
@@ -405,11 +405,11 @@ export const en: Content = {
     ],
     skillsHeading: "Skills",
     skillGroups: [
-      { name: "Backend", items: "Python, FastAPI, Django/DRF, Celery, Pydantic v2, async SQLAlchemy, PostgreSQL, Redis" },
-      { name: "Frontend", items: "TypeScript, React 19, Vue 3, Vite, Tailwind, Radix, Pinia" },
-      { name: "Data & AI", items: "Signal fusion, prediction calibration, evaluation/scorecards, AI-agent orchestration" },
-      { name: "Infra & DevOps", items: "Docker, Kubernetes-ready, GitHub Actions CI/CD, CodeQL, Trivy, SBOM/cosign, Playwright" },
-      { name: "Domain", items: "Freight quoting, route risk, port operations, tariffs, logistics SME workflows" },
+      { name: "AI Orchestration", items: "Claude Code, GPT, Cursor; briefing, review, adversarial verification, quality control, TDD-first" },
+      { name: "Design & Creative", items: "Product & UI/UX, brand & identity, design systems & tokens, creative direction" },
+      { name: "System Architecture", items: "Architecture design, data flows & APIs, cross-product integration, fail-closed security, deterministic money paths" },
+      { name: "Product & Operations", items: "Idea → live end to end, product strategy, growth, logistics domain" },
+      { name: "Stack I direct", items: "Python, FastAPI, Django/DRF, React 19, Vue 3, TypeScript, PostgreSQL, Redis, Docker, CI/CD — directed, not hand-coded" },
     ],
     educationHeading: "Education",
     education: [

@@ -248,30 +248,30 @@ export const vi: Content = {
   },
 
   skills: {
-    eyebrow: "Công cụ",
-    heading: "Kỹ năng",
+    eyebrow: "Năng lực",
+    heading: "Năng lực",
     intro:
-      "Nhóm gọn và trung thực — mọi thứ dưới đây đều nằm trong code production mà tôi trực tiếp chỉ huy và giải thích được từng dòng.",
+      "Thế mạnh của tôi là điều phối AI, thiết kế và kiến trúc hệ thống — không phải gõ tay từng dòng code. Tôi ra đề bài, thiết kế, review và kiểm soát chất lượng; AI thực thi dưới kỷ luật tôi đặt ra. Stack công nghệ bên dưới là thứ tôi điều phối, không phải chuyên môn tay nghề của tôi.",
     groups: [
       {
-        name: "Backend",
-        items: ["Python", "FastAPI", "Django 5 / DRF", "Celery", "Pydantic v2", "async SQLAlchemy", "PostgreSQL", "Redis"],
+        name: "Điều phối AI",
+        items: ["Claude Code", "GPT", "Cursor", "Ra đề bài & đặc tả", "Review & kiểm chứng đối kháng", "Kiểm soát chất lượng", "TDD-first"],
       },
       {
-        name: "Frontend",
-        items: ["TypeScript", "React 19", "Vue 3", "Vite", "Tailwind CSS", "Radix UI", "Pinia"],
+        name: "Thiết kế & Sáng tạo",
+        items: ["Product & UI/UX", "Thương hiệu & nhận diện", "Design system & tokens", "Định hướng sáng tạo", "Landing & storytelling"],
       },
       {
-        name: "Data & AI",
-        items: ["Hợp nhất tín hiệu & truy xuất nguồn gốc", "Hiệu chỉnh dự báo (calibration)", "Đánh giá & bảng điểm", "Điều phối AI agent", "Prompt & context engineering"],
+        name: "Kiến trúc hệ thống",
+        items: ["Thiết kế kiến trúc", "Luồng dữ liệu & API", "Tích hợp liên sản phẩm", "Bảo mật fail-closed", "Đường tiền xác định"],
       },
       {
-        name: "Infra & DevOps",
-        items: ["Docker", "Service Kubernetes-ready", "CI/CD (GitHub Actions)", "CodeQL / Trivy / Dependabot", "SBOM + ký cosign", "Playwright E2E"],
+        name: "Sản phẩm & Vận hành",
+        items: ["Ý tưởng → vận hành trọn vòng", "Chiến lược sản phẩm", "Điều phối CI/CD & release", "Tăng trưởng"],
       },
       {
-        name: "Sản phẩm & Chuyên ngành",
-        items: ["Quy trình báo giá cước", "Rủi ro tuyến & vận hành cảng", "Thuế quan / hành động thương mại", "Vận hành SME logistics", "Sản phẩm song ngữ (EN/VN)"],
+        name: "Chuyên ngành logistics",
+        items: ["Chuỗi cung ứng", "Báo giá cước", "Rủi ro tuyến & cảng", "Thuế quan", "Vận hành SME"],
       },
     ],
     consoleLabel: "Bảng năng lực",
@@ -405,11 +405,11 @@ export const vi: Content = {
     ],
     skillsHeading: "Kỹ năng",
     skillGroups: [
-      { name: "Backend", items: "Python, FastAPI, Django/DRF, Celery, Pydantic v2, async SQLAlchemy, PostgreSQL, Redis" },
-      { name: "Frontend", items: "TypeScript, React 19, Vue 3, Vite, Tailwind, Radix, Pinia" },
-      { name: "Data & AI", items: "Hợp nhất tín hiệu, hiệu chỉnh dự báo, đánh giá/bảng điểm, điều phối AI agent" },
-      { name: "Infra & DevOps", items: "Docker, Kubernetes-ready, GitHub Actions CI/CD, CodeQL, Trivy, SBOM/cosign, Playwright" },
-      { name: "Chuyên ngành", items: "Báo giá cước, rủi ro tuyến, vận hành cảng, thuế quan, quy trình SME logistics" },
+      { name: "Điều phối AI", items: "Claude Code, GPT, Cursor; ra đề bài, review, kiểm chứng đối kháng, kiểm soát chất lượng, TDD-first" },
+      { name: "Thiết kế & Sáng tạo", items: "Product & UI/UX, thương hiệu & nhận diện, design system & tokens, định hướng sáng tạo" },
+      { name: "Kiến trúc hệ thống", items: "Thiết kế kiến trúc, luồng dữ liệu & API, tích hợp liên sản phẩm, bảo mật fail-closed, đường tiền xác định" },
+      { name: "Sản phẩm & Vận hành", items: "Ý tưởng → vận hành trọn vòng, chiến lược sản phẩm, tăng trưởng, chuyên ngành logistics" },
+      { name: "Stack tôi điều phối", items: "Python, FastAPI, Django/DRF, React 19, Vue 3, TypeScript, PostgreSQL, Redis, Docker, CI/CD — do tôi chỉ huy, không phải code gõ tay" },
     ],
     educationHeading: "Học vấn",
     education: [
