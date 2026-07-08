@@ -13,7 +13,15 @@ export function EffectsProvider() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!window.matchMedia("(pointer: fine)").matches) return;
 
-    const onMove = (event: PointerEvent) => {
+    // coalesce pointermove writes into one rAF/frame — pointer events fire
+    // faster than the display refreshes, so raw per-event style writes waste work
+    let frame = 0;
+    let latest: PointerEvent | null = null;
+
+    const flush = () => {
+      frame = 0;
+      const event = latest;
+      if (!event) return;
       const target = event.target as Element | null;
 
       const spot = target?.closest<HTMLElement>("[data-spotlight]");
@@ -32,6 +40,11 @@ export function EffectsProvider() {
       }
     };
 
+    const onMove = (event: PointerEvent) => {
+      latest = event;
+      if (!frame) frame = requestAnimationFrame(flush);
+    };
+
     const onOut = (event: PointerEvent) => {
       const magnet = (event.target as Element | null)?.closest<HTMLElement>("[data-magnetic]");
       if (magnet && !magnet.contains(event.relatedTarget as Node)) {
@@ -42,6 +55,7 @@ export function EffectsProvider() {
     document.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("pointerout", onOut, { passive: true });
     return () => {
+      if (frame) cancelAnimationFrame(frame);
       document.removeEventListener("pointermove", onMove);
       document.removeEventListener("pointerout", onOut);
     };

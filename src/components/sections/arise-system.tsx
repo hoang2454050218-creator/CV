@@ -96,7 +96,7 @@ export function AriseSystem({ content }: { content: Content }) {
             className="anim-rise glass rounded-2xl p-6 [animation-duration:0.4s] md:p-10"
             style={{ ["--card-accent" as string]: accent }}
           >
-              <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-14">
+              <div className="grid gap-8 md:grid-cols-[1.4fr_1fr] md:gap-8 lg:gap-14">
                 <div>
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                     {/* real product mark in a glass tile — links to the live product */}

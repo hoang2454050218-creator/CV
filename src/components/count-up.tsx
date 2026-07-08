@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Counts the first integer in `value` up from 0 when scrolled into view
  * (e.g. "−34%" animates 0→34, "18+" animates 0→18). Server-rendered and
  * no-JS output is always the final string — the animation only ever
  * REPLACES a complete value in a visible tab, so nothing can ship blank.
+ * Writes straight to the DOM node during the rAF loop (no per-frame React
+ * re-render) — the value is decorative text, not app state.
  */
 export function CountUp({ value, className }: { value: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     const el = ref.current;
@@ -34,8 +35,9 @@ export function CountUp({ value, className }: { value: string; className?: strin
         const tick = (now: number) => {
           const t = Math.min(1, (now - start) / duration);
           const eased = 1 - Math.pow(1 - t, 4); // expo-ish out
-          setDisplay(`${prefix}${Math.round(eased * target)}${suffix}`);
+          el.textContent = `${prefix}${Math.round(eased * target)}${suffix}`;
           if (t < 1) raf = requestAnimationFrame(tick);
+          else el.textContent = value; // land exactly on the source string
         };
         raf = requestAnimationFrame(tick);
       },
@@ -51,7 +53,7 @@ export function CountUp({ value, className }: { value: string; className?: strin
 
   return (
     <span ref={ref} className={className}>
-      {display}
+      {value}
     </span>
   );
 }

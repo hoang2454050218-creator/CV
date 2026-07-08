@@ -87,7 +87,7 @@ export function SiteHeader({ locale, nav }: { locale: Locale; nav: NavContent })
           </a>
           <button
             type="button"
-            className="inline-flex size-9 items-center justify-center rounded-full border border-line text-muted transition-colors hover:text-ink lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-line text-muted transition-colors hover:text-ink lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={nav.menuButtonAria}

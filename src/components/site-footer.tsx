@@ -72,7 +72,7 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
                   {inner}
                   <span
                     aria-hidden="true"
-                    className="text-muted transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-strong"
+                    className="text-muted transition-[transform,color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-strong"
                   >
                     ↗
                   </span>
@@ -97,7 +97,7 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
           <LocaleLink
             locale={otherLocale}
             href={`/${otherLocale}`}
-            className="mono-label text-faint underline underline-offset-4 hover:text-ink"
+            className="mono-label inline-flex min-h-[24px] items-center text-faint underline underline-offset-4 hover:text-ink"
           >
             {f.localeNote}
           </LocaleLink>

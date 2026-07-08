@@ -29,7 +29,7 @@ export function Proof({ content }: { content: Content }) {
               {p.rows.map((row, i) => (
                 <li key={row.value + row.label} className="border-b border-line">
                   <Reveal delay={i * 0.06}>
-                    <div className="grid gap-x-8 gap-y-1 py-6 sm:grid-cols-[7rem_1fr]">
+                    <div className="grid gap-x-8 gap-y-2 py-6 sm:grid-cols-[7rem_1fr]">
                       <p
                         className={`font-mono text-[1.75rem] font-semibold tabular-nums leading-none ${
                           row.channel === "accent" ? "text-accent" : "text-brand-strong"

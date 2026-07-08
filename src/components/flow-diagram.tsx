@@ -200,7 +200,7 @@ export function FlowDiagram({
             />
           </g>
         ))}
-        <text x="230" y="20" className="diagram-mono" fill="var(--faint)">
+        <text x="352" y="20" textAnchor="end" className="diagram-mono" fill="var(--faint)">
           {sourcesLabel}
         </text>
 
