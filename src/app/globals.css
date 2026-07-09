@@ -1008,6 +1008,259 @@ html[data-anim="1"] .anim-rise {
   }
 }
 
+/* ── How-I-build = Protocol Console ─────────────────────────────────────
+   Extends the Capability Console (#skills): one glass instrument panel, six
+   numbered principles stationed on a continuous spine. THE signature: a
+   scroll-driven accent draws DOWN that spine with a glowing head riding its
+   leading edge. Base rail painted ALWAYS; the bright draw + head only run
+   where scroll-timeline is supported AND motion is allowed — everyone else
+   gets a full, static gradient spine (never blank, never half-drawn). */
+
+.protocol-panel {
+  --gutter: clamp(1.25rem, 0.9rem + 1vw, 1.6rem);
+  --spine-x: calc(var(--gutter) + 2.15rem);
+  --row-py: 1.5rem;
+}
+
+.protocol-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.protocol-body-wrap {
+  position: relative;
+}
+
+/* two stacked rails at the spine: faint base (::before) + bright draw (::after) */
+.protocol-body-wrap::before,
+.protocol-body-wrap::after {
+  content: "";
+  position: absolute;
+  left: var(--spine-x);
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  pointer-events: none;
+}
+
+.protocol-body-wrap::before {
+  transform: translateX(-50%);
+  background: color-mix(in oklch, var(--line-strong) 90%, transparent);
+}
+
+/* fallback = full static spine; scaled by scroll only where supported */
+.protocol-body-wrap::after {
+  transform: translateX(-50%) scaleY(1);
+  transform-origin: 50% 0;
+  background: linear-gradient(
+    to bottom,
+    var(--brand-strong) 0%,
+    var(--acc-vantis) 45%,
+    var(--violet) 100%
+  );
+  filter: drop-shadow(0 0 5px color-mix(in oklch, var(--brand-strong) 50%, transparent));
+}
+
+/* glowing head that rides the leading edge of the draw */
+.protocol-spine-head {
+  position: absolute;
+  left: var(--spine-x);
+  top: 0;
+  bottom: 0;
+  width: 0;
+  pointer-events: none;
+  display: none;
+}
+
+.protocol-spine-head::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: var(--brand-strong);
+  box-shadow: 0 0 10px 1.5px color-mix(in oklch, var(--brand-strong) 75%, transparent);
+}
+
+@keyframes protocol-spine-draw {
+  from { transform: translateX(-50%) scaleY(0); }
+  to   { transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes protocol-head-ride {
+  0%   { transform: translateY(0);    opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .protocol-body-wrap::after {
+      animation: protocol-spine-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 12% exit 60%;
+    }
+    .protocol-spine-head {
+      display: block;
+      animation: protocol-head-ride linear both;
+      animation-timeline: view();
+      animation-range: entry 12% exit 60%;
+    }
+  }
+}
+
+/* ── numbered station rows ── */
+.protocol-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: var(--row-py) var(--gutter) calc(var(--row-py) + 0.1rem)
+    calc(var(--spine-x) + 1.05rem);
+  border-top: 1px solid color-mix(in oklch, var(--line) 62%, transparent);
+  transition: background-color 0.35s var(--ease-out-expo);
+}
+
+.protocol-row:first-child {
+  border-top: 0;
+}
+
+.protocol-row:hover {
+  background: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 6%, transparent);
+}
+
+@media (min-width: 768px) {
+  .protocol-row {
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 3vw, 3.25rem);
+    align-items: start;
+  }
+}
+
+/* gutter index numeral */
+.protocol-index {
+  position: absolute;
+  left: var(--gutter);
+  top: calc(var(--row-py) + 0.08rem);
+  font-family: var(--font-stack-mono);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--faint);
+  transition:
+    color 0.3s var(--ease-out-expo),
+    transform 0.3s var(--ease-out-expo);
+}
+
+.protocol-row:hover .protocol-index {
+  color: var(--row-accent, var(--brand-strong));
+  transform: translateX(-2px);
+}
+
+/* station node on the spine */
+.protocol-node {
+  position: absolute;
+  left: var(--spine-x);
+  top: calc(var(--row-py) + 0.5rem);
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: var(--surface-2);
+  border: 1.5px solid
+    color-mix(in oklch, var(--row-accent, var(--brand-strong)) 55%, var(--line-strong));
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--surface) 65%, transparent);
+  transition:
+    background-color 0.3s var(--ease-out-expo),
+    border-color 0.3s var(--ease-out-expo),
+    box-shadow 0.3s var(--ease-out-expo),
+    transform 0.3s var(--ease-out-expo);
+}
+
+/* connective tick from node toward the text, drawn on hover (transform-only) */
+.protocol-node::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  width: 0.8rem;
+  height: 1.5px;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  background: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 70%, transparent);
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.protocol-row:hover .protocol-node {
+  background: var(--row-accent, var(--brand-strong));
+  border-color: var(--row-accent, var(--brand-strong));
+  box-shadow:
+    0 0 0 3px color-mix(in oklch, var(--surface) 65%, transparent),
+    0 0 12px 1px color-mix(in oklch, var(--row-accent, var(--brand-strong)) 80%, transparent);
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.protocol-row:hover .protocol-node::after {
+  transform: translateY(-50%) scaleX(1);
+}
+
+/* title + body */
+.protocol-title {
+  font-size: 1.06rem;
+  line-height: 1.25;
+  color: var(--ink);
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.protocol-body {
+  margin-top: 0.6rem;
+  max-width: 56ch;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--muted);
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+@media (min-width: 768px) {
+  .protocol-body {
+    margin-top: 0;
+  }
+}
+
+.protocol-row:hover .protocol-title,
+.protocol-row:hover .protocol-body {
+  transform: translateX(3px);
+}
+
+/* conclusion hairline above the moat pull-quote */
+.protocol-outro-rule {
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  margin-inline: auto;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--brand-strong), var(--accent), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .protocol-row:hover .protocol-index,
+  .protocol-row:hover .protocol-title,
+  .protocol-row:hover .protocol-body {
+    transform: none;
+  }
+  .protocol-row:hover .protocol-node {
+    transform: translate(-50%, -50%);
+  }
+  .protocol-row:hover .protocol-node::after {
+    transform: translateY(-50%) scaleX(0);
+  }
+}
+
 /* --- print (resume route) --- */
 @media print {
   @page {
