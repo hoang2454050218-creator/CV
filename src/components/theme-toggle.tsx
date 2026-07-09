@@ -23,7 +23,7 @@ export function ThemeToggle({ labels }: { labels: { toDark: string; toLight: str
       aria-label={mounted ? label : labels.toDark}
       title={mounted ? label : undefined}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="inline-flex size-9 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-line-strong hover:text-ink"
+      className="inline-flex size-10 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-line-strong hover:text-ink"
     >
       {/* render both glyphs, CSS decides — avoids hydration mismatch */}
       <svg viewBox="0 0 20 20" className="size-[18px] dark:hidden" fill="none" aria-hidden="true">

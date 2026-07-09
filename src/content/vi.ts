@@ -160,7 +160,7 @@ export const vi: Content = {
         value: "2×",
         label: "Top 10 cuộc thi khởi nghiệp toàn quốc",
         detail:
-          "ARISE vào Top 10 tại 'Khởi nghiệp cùng Kawai' và I-STARTUP — được nhà đầu tư chấm như một startup thật, không phải đồ án trên lớp.",
+          "ARISE vào Top 10 tại 'Khởi nghiệp cùng Kawai' và I‑STARTUP — được nhà đầu tư chấm như một startup thật, không phải đồ án trên lớp.",
         channel: "accent",
       },
     ],
@@ -299,7 +299,7 @@ export const vi: Content = {
     facts: [
       { label: "Nơi ở", value: "Đà Nẵng, Việt Nam" },
       { label: "Học vấn", value: "Năm 2 ngành Logistics & Chuỗi cung ứng, Đại học Kiến trúc Đà Nẵng (DAU)" },
-      { label: "Giải thưởng", value: "Top 10 — Khởi nghiệp cùng Kawai · Top 10 — I-STARTUP" },
+      { label: "Giải thưởng", value: "Top 10 — Khởi nghiệp cùng Kawai · Top 10 — I‑STARTUP" },
       { label: "Email", value: "hoang_2454050218@dau.edu.vn" },
     ],
   },
@@ -402,7 +402,7 @@ export const vi: Content = {
       "Ba service chạy production trên hạ tầng thật từ giữa 2026.",
       "Giảm ~34% sai số out-of-sample nhờ hiệu chỉnh trên dữ liệu tàu thật.",
       "Telegram proof-bot công khai với bảng điểm dự báo tự chấm theo thời gian thực.",
-      "Top 10 tại hai cuộc thi khởi nghiệp toàn quốc với ARISE — 'Khởi nghiệp cùng Kawai' và I-STARTUP.",
+      "Top 10 tại hai cuộc thi khởi nghiệp toàn quốc với ARISE — 'Khởi nghiệp cùng Kawai' và I‑STARTUP.",
       "CI/CD gia cố bảo mật trên mọi repo: CodeQL, Dependabot, SBOM + cosign, Trivy, contract test.",
       "Quy trình AI-native: thiết kế kiến trúc, chỉ huy và kiểm chứng AI agent dưới TDD và review đối kháng.",
     ],

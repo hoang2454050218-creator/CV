@@ -97,7 +97,7 @@ export function SiteFooter({ locale, content }: { locale: Locale; content: Conte
           <LocaleLink
             locale={otherLocale}
             href={`/${otherLocale}`}
-            className="mono-label inline-flex min-h-[24px] items-center text-faint underline underline-offset-4 hover:text-ink"
+            className="mono-label inline-flex min-h-[44px] items-center text-faint underline underline-offset-4 hover:text-ink"
           >
             {f.localeNote}
           </LocaleLink>

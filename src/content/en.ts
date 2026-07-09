@@ -160,7 +160,7 @@ export const en: Content = {
         value: "2×",
         label: "Top 10 at national startup competitions",
         detail:
-          "ARISE reached the Top 10 at 'Khởi nghiệp cùng Kawai' and I-STARTUP — judged by investors as a venture, not graded as a class project.",
+          "ARISE reached the Top 10 at 'Khởi nghiệp cùng Kawai' and I‑STARTUP — judged by investors as a venture, not graded as a class project.",
         channel: "accent",
       },
     ],
@@ -299,7 +299,7 @@ export const en: Content = {
     facts: [
       { label: "Location", value: "Da Nang, Vietnam" },
       { label: "Education", value: "2nd-year Logistics & Supply Chain, Da Nang Architecture University (DAU)" },
-      { label: "Recognition", value: "Top 10 — Khởi nghiệp cùng Kawai · Top 10 — I-STARTUP" },
+      { label: "Recognition", value: "Top 10 — Khởi nghiệp cùng Kawai · Top 10 — I‑STARTUP" },
       { label: "Email", value: "hoang_2454050218@dau.edu.vn" },
     ],
   },
@@ -402,7 +402,7 @@ export const en: Content = {
       "Three services running in production on real infrastructure since mid-2026.",
       "~34% reduction in out-of-sample error, calibrated against real vessel data.",
       "A public Telegram proof-bot with a live, self-grading forecast scorecard.",
-      "Top 10 at two national startup competitions with ARISE — 'Khởi nghiệp cùng Kawai' and I-STARTUP.",
+      "Top 10 at two national startup competitions with ARISE — 'Khởi nghiệp cùng Kawai' and I‑STARTUP.",
       "Security-hardened CI/CD across every repo: CodeQL, Dependabot, SBOM + cosign, Trivy, contract tests.",
       "An AI-native workflow: architecting, directing, and verifying AI agents under TDD and adversarial review.",
     ],
