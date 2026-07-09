@@ -297,8 +297,7 @@ export const vi: Content = {
       { label: "Nơi ở", value: "Đà Nẵng, Việt Nam" },
       { label: "Học vấn", value: "Năm 2 ngành Logistics & Chuỗi cung ứng, Đại học Kiến trúc Đà Nẵng (DAU)" },
       { label: "Giải thưởng", value: "Top 10 — Khởi nghiệp cùng Kawai · Top 10 — I-STARTUP" },
-      { label: "Ngôn ngữ", value: "Tiếng Việt (bản ngữ), tiếng Anh (chuyên môn)" },
-      { label: "Email", value: "hoangpro2607004@gmail.com" },
+      { label: "Email", value: "hoang_2454050218@dau.edu.vn" },
     ],
   },
 
@@ -328,7 +327,7 @@ export const vi: Content = {
     contactBody:
       "Nếu bạn là nhà đầu tư, người vận hành logistics, hay đơn giản là người thích kiểm tra biên lai — tôi rất muốn trò chuyện.",
     emailLabel: "Email",
-    email: "hoangpro2607004@gmail.com",
+    email: "hoang_2454050218@dau.edu.vn",
     links: [
       {
         label: "GitHub",
@@ -358,7 +357,7 @@ export const vi: Content = {
     role: "Founder & người xây dựng duy nhất, ARISE — nền tảng dự báo rủi ro vận tải",
     contactLine: [
       "Đà Nẵng, Việt Nam",
-      "hoangpro2607004@gmail.com",
+      "hoang_2454050218@dau.edu.vn",
       "github.com/hoang2454050218-creator",
       "linkedin.com/in/hoang-bui-404201375",
     ],

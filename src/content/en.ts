@@ -297,8 +297,7 @@ export const en: Content = {
       { label: "Location", value: "Da Nang, Vietnam" },
       { label: "Education", value: "2nd-year Logistics & Supply Chain, Da Nang Architecture University (DAU)" },
       { label: "Recognition", value: "Top 10 — Khởi nghiệp cùng Kawai · Top 10 — I-STARTUP" },
-      { label: "Languages", value: "Vietnamese (native), English (professional)" },
-      { label: "Email", value: "hoangpro2607004@gmail.com" },
+      { label: "Email", value: "hoang_2454050218@dau.edu.vn" },
     ],
   },
 
@@ -328,7 +327,7 @@ export const en: Content = {
     contactBody:
       "If you're an investor, a logistics operator, or someone who checks the receipts — I'd like to talk.",
     emailLabel: "Email",
-    email: "hoangpro2607004@gmail.com",
+    email: "hoang_2454050218@dau.edu.vn",
     links: [
       {
         label: "GitHub",
@@ -358,7 +357,7 @@ export const en: Content = {
     role: "Founder & sole builder, ARISE — freight risk-intelligence platform",
     contactLine: [
       "Da Nang, Vietnam",
-      "hoangpro2607004@gmail.com",
+      "hoang_2454050218@dau.edu.vn",
       "github.com/hoang2454050218-creator",
       "linkedin.com/in/hoang-bui-404201375",
     ],
