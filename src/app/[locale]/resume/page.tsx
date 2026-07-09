@@ -21,17 +21,17 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
   };
 }
 
-/** numbered mono heading + hairline — precise, document-grade */
+/** refined section label — a quiet index + strong small-caps + a hairline */
 function SectionHeading({ index, children }: { index: string; children: React.ReactNode }) {
   return (
-    <div className="mb-3.5 mt-8 flex items-center gap-3 print:mt-5">
-      <span className="font-mono text-[0.7rem] font-semibold tabular-nums text-neutral-400">
+    <div className="mb-4 mt-10 flex items-baseline gap-3.5 print:mt-7">
+      <span className="font-mono text-[0.66rem] font-medium tabular-nums text-neutral-300">
         {index}
       </span>
-      <h2 className="whitespace-nowrap text-[0.78rem] font-bold uppercase tracking-[0.14em] text-neutral-900">
+      <h2 className="whitespace-nowrap text-[0.72rem] font-bold uppercase tracking-[0.2em] text-neutral-900">
         {children}
       </h2>
-      <span className="h-px flex-1 bg-neutral-200" aria-hidden="true" />
+      <span className="h-px flex-1 translate-y-[-2px] bg-neutral-200" aria-hidden="true" />
     </div>
   );
 }
@@ -66,7 +66,7 @@ export default async function ResumePage({ params }: PageParams) {
         </div>
       </div>
 
-      {/* the document — premium paper sheet on screen, clean A4 in print */}
+      {/* the document — a premium paper sheet on screen, clean A4 in print */}
       <article className="resume-sheet mx-auto w-full max-w-[54rem] overflow-hidden rounded-2xl bg-white text-neutral-900 shadow-[0_30px_90px_-32px_rgba(2,8,30,0.7)] ring-1 ring-black/5 print:max-w-none print:overflow-visible print:rounded-none print:shadow-none print:ring-0">
         {/* screen-only brand accent bar */}
         <div
@@ -74,67 +74,74 @@ export default async function ResumePage({ params }: PageParams) {
           className="h-1.5 bg-gradient-to-r from-cyan-500 via-sky-500 to-teal-400 print:hidden"
         />
 
-        <div className="px-8 py-10 sm:px-14 print:px-0 print:py-0">
-          {/* ── header / letterhead ── */}
+        <div className="px-9 py-11 sm:px-16 sm:py-14 print:p-0">
+          {/* ── letterhead ── */}
           <header>
-            <div className="flex items-start justify-between gap-6">
+            <div className="flex items-start justify-between gap-8">
               <div className="min-w-0">
                 <div className="flex items-center gap-2.5 text-neutral-900">
-                  <AriseMark className="size-6" />
-                  <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+                  <AriseMark className="size-[1.35rem]" />
+                  <span className="font-mono text-[0.64rem] font-medium uppercase tracking-[0.28em] text-neutral-400">
                     {r.documentTag}
                   </span>
                 </div>
-                <h1 className="heading-type mt-3.5 text-[2.15rem] leading-[1.05] text-neutral-900">
+                <h1 className="heading-type mt-5 text-[2.6rem] leading-[0.98] tracking-[-0.025em] text-neutral-900">
                   {r.name}
                 </h1>
-                <p className="mt-1.5 text-[1.05rem] font-medium text-neutral-700">{r.role}</p>
+                <p className="mt-3 text-[1.05rem] font-medium leading-snug text-neutral-600">
+                  {r.role}
+                </p>
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element -- plain img prints reliably */}
               <img
                 src="/avatar.jpg"
                 alt={content.about.portraitAlt}
-                width={92}
-                height={92}
-                className="size-20 shrink-0 rounded-xl object-cover ring-1 ring-neutral-200 sm:size-[5.5rem]"
+                width={88}
+                height={88}
+                className="size-[4.75rem] shrink-0 rounded-full object-cover ring-1 ring-neutral-200 sm:size-[5.25rem]"
               />
             </div>
 
-            <p className="mt-4 font-mono text-[0.76rem] leading-relaxed text-neutral-600">
-              {r.contactLine.join("   ·   ")}
+            <p className="mt-6 font-mono text-[0.74rem] leading-relaxed tracking-wide text-neutral-500">
+              {r.contactLine.join("      ·      ")}
             </p>
 
-            {/* accent + full rule under the letterhead */}
-            <div className="mt-4 flex items-center" aria-hidden="true">
-              <span className="h-[2px] w-14 rounded-full bg-cyan-500 print:bg-neutral-800" />
-              <span className="h-px flex-1 bg-neutral-800" />
+            {/* commanding rule under the letterhead */}
+            <div className="mt-6 flex items-center gap-0" aria-hidden="true">
+              <span className="h-[2.5px] w-16 rounded-full bg-cyan-500 print:bg-neutral-900" />
+              <span className="h-[1.5px] flex-1 bg-neutral-900" />
             </div>
           </header>
 
+          {/* ── lead statement — the executive positioning ── */}
           <section className="print-avoid-break">
             <SectionHeading index="01">{r.summaryHeading}</SectionHeading>
-            <p className="text-[0.9375rem] leading-relaxed text-neutral-800">{r.summary}</p>
+            <p className="max-w-[62ch] text-[1.0625rem] leading-[1.72] text-neutral-800">
+              {r.summary}
+            </p>
           </section>
 
           <section>
             <SectionHeading index="02">{r.productHeading}</SectionHeading>
             <div className="flex flex-wrap items-baseline justify-between gap-x-6">
-              <p className="text-[1rem] font-bold text-neutral-900">{r.productName}</p>
-              <p className="font-mono text-[0.76rem] text-neutral-500">{r.productPeriod}</p>
+              <p className="text-[1.05rem] font-bold text-neutral-900">{r.productName}</p>
+              <p className="font-mono text-[0.74rem] text-neutral-500">{r.productPeriod}</p>
             </div>
-            <p className="mt-1 text-[0.9375rem] leading-relaxed text-neutral-700">{r.productIntro}</p>
-            <p className="mt-1.5 font-mono text-[0.72rem] text-neutral-500">{r.productLinks}</p>
-            <div className="mt-3.5 space-y-3.5">
+            <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-neutral-700">
+              {r.productIntro}
+            </p>
+            <p className="mt-2 font-mono text-[0.72rem] text-neutral-500">{r.productLinks}</p>
+            <div className="mt-4 space-y-4">
               {r.services.map((service) => (
                 <div key={service.name} className="print-avoid-break">
                   <h3 className="flex items-center gap-2 text-[0.9375rem] font-semibold text-neutral-900">
                     <span
                       aria-hidden="true"
-                      className="inline-block size-1.5 rounded-full bg-cyan-500 print:bg-neutral-800"
+                      className="inline-block size-1.5 rounded-full bg-cyan-500 print:bg-neutral-900"
                     />
                     {service.name}
                   </h3>
-                  <ul className="mt-1.5 space-y-1 pl-[1.4rem]">
+                  <ul className="mt-2 space-y-1.5 pl-[1.4rem]">
                     {service.bullets.map((bullet, i) => (
                       <li
                         key={i}
@@ -151,11 +158,11 @@ export default async function ResumePage({ params }: PageParams) {
 
           <section className="print-avoid-break">
             <SectionHeading index="03">{r.highlightsHeading}</SectionHeading>
-            <ul className="grid gap-x-8 gap-y-1.5 sm:grid-cols-2 print:grid-cols-2">
+            <ul className="grid gap-x-10 gap-y-2 sm:grid-cols-2 print:grid-cols-2">
               {r.highlights.map((highlight, i) => (
                 <li
                   key={i}
-                  className="relative pl-[1rem] text-[0.9rem] leading-relaxed text-neutral-700 before:absolute before:left-0 before:top-[0.62em] before:h-[3px] before:w-[7px] before:rounded-full before:bg-cyan-500 before:content-[''] print:before:bg-neutral-800"
+                  className="relative pl-[1.05rem] text-[0.9rem] leading-relaxed text-neutral-700 before:absolute before:left-0 before:top-[0.62em] before:h-[3px] before:w-[7px] before:rounded-full before:bg-cyan-500 before:content-[''] print:before:bg-neutral-900"
                 >
                   {highlight}
                 </li>
@@ -165,11 +172,11 @@ export default async function ResumePage({ params }: PageParams) {
 
           <section className="print-avoid-break">
             <SectionHeading index="04">{r.skillsHeading}</SectionHeading>
-            <dl className="space-y-2">
+            <dl className="space-y-2.5">
               {r.skillGroups.map((group) => (
                 <div
                   key={group.name}
-                  className="grid gap-x-5 sm:grid-cols-[10rem_1fr] print:grid-cols-[10rem_1fr]"
+                  className="grid gap-x-6 sm:grid-cols-[10.5rem_1fr] print:grid-cols-[10.5rem_1fr]"
                 >
                   <dt className="text-[0.9rem] font-semibold text-neutral-900">{group.name}</dt>
                   <dd className="text-[0.9rem] leading-relaxed text-neutral-700">{group.items}</dd>
@@ -178,7 +185,7 @@ export default async function ResumePage({ params }: PageParams) {
             </dl>
           </section>
 
-          <div className="grid gap-x-10 sm:grid-cols-[1.4fr_1fr] print:grid-cols-[1.4fr_1fr]">
+          <div className="grid gap-x-12 sm:grid-cols-[1.5fr_1fr] print:grid-cols-[1.5fr_1fr]">
             <section className="print-avoid-break">
               <SectionHeading index="05">{r.educationHeading}</SectionHeading>
               {r.education.map((entry) => (
@@ -192,20 +199,20 @@ export default async function ResumePage({ params }: PageParams) {
                   </p>
                 </div>
               ))}
-              <SectionHeading index="06">{r.languagesHeading}</SectionHeading>
-              <ul className="space-y-1">
-                {r.languages.map((language) => (
-                  <li key={language} className="text-[0.9rem] text-neutral-700">
-                    {language}
-                  </li>
-                ))}
-              </ul>
             </section>
 
             <section className="print-avoid-break">
-              <SectionHeading index="07">{r.lookingForHeading}</SectionHeading>
+              <SectionHeading index="06">{r.lookingForHeading}</SectionHeading>
               <p className="text-[0.9rem] leading-relaxed text-neutral-800">{r.lookingFor}</p>
             </section>
+          </div>
+
+          {/* refined footer signature */}
+          <div className="mt-12 flex items-center gap-3 border-t border-neutral-200 pt-4 print:mt-10">
+            <AriseMark className="size-4 text-neutral-400" />
+            <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-neutral-400">
+              {r.name} · {r.documentTag}
+            </span>
           </div>
         </div>
       </article>
