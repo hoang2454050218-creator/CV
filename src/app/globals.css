@@ -238,6 +238,15 @@ p {
   }
 }
 
+/* ARISE service tabs — smooth accent/glow transition per product */
+.service-tab {
+  transition:
+    color 0.3s var(--ease-out-expo),
+    border-color 0.3s var(--ease-out-expo),
+    background-color 0.3s var(--ease-out-expo),
+    box-shadow 0.3s var(--ease-out-expo);
+}
+
 /* tech pills adopt the active product's accent on hover */
 .stack-pill {
   transition: border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
@@ -1258,6 +1267,247 @@ html[data-anim="1"] .anim-rise {
   }
   .protocol-row:hover .protocol-node::after {
     transform: translateY(-50%) scaleX(0);
+  }
+}
+
+/* ── Proof = Evidence Ledger / live telemetry readout ──────────────────────
+   NOT a third console panel: no titlebar box, no vertical spine. Each row is a
+   printed receipt line — a hero mono number that counts up, metered by a GAUGE
+   that draws under it as the row scrolls in (a horizontal filling meter with a
+   hot leading edge), a soft accent aura igniting behind the number, and a mono
+   status flag by the label. 2-signal palette (cyan = measured · mint = verified)
+   via --row-accent set from channel. Draw language rhymes with timeline-rail /
+   protocol-spine-head, rotated into a meter. */
+
+.proof-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.proof-line {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.35s var(--ease-out-expo);
+}
+
+.proof-line:hover {
+  background: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 5%, transparent);
+}
+
+/* the ledger rule lights in the metric accent when the line is active */
+.proof-line-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 1.5px;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(
+    90deg,
+    var(--row-accent, var(--brand-strong)),
+    color-mix(in oklch, var(--row-accent, var(--brand-strong)) 25%, transparent)
+  );
+  box-shadow: 0 0 8px color-mix(in oklch, var(--row-accent, var(--brand-strong)) 55%, transparent);
+  transition: transform 0.45s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.proof-line:hover .proof-line-rule {
+  transform: scaleX(1);
+}
+
+/* row grid: hero metric column (fixed width → no CLS as CountUp grows) | readout */
+.proof-line-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 0;
+  padding: 1.9rem 0;
+}
+
+@media (min-width: 640px) {
+  .proof-line-grid {
+    grid-template-columns: clamp(7.5rem, 13vw, 10.5rem) 1fr;
+    column-gap: clamp(1.5rem, 4vw, 2.75rem);
+    align-items: start;
+  }
+}
+
+.proof-metric {
+  position: relative;
+  min-width: 0;
+}
+
+/* scroll-ignited aura behind the number (default = soft static glow) */
+.proof-metric::before {
+  content: "";
+  position: absolute;
+  left: -0.35em;
+  top: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+  transform: translateY(-60%);
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklch, var(--row-accent, var(--brand-strong)) 26%, transparent),
+    transparent 68%
+  );
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.proof-value {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-stack-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.15rem, 1.5rem + 2.4vw, 3.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--row-accent, var(--brand-strong));
+  text-shadow: 0 0 0.55em color-mix(in oklch, var(--row-accent, var(--brand-strong)) 30%, transparent);
+  transition:
+    filter 0.3s var(--ease-out-expo),
+    text-shadow 0.3s var(--ease-out-expo);
+}
+
+.proof-line:hover .proof-value {
+  filter: brightness(1.12);
+  text-shadow: 0 0 0.72em color-mix(in oklch, var(--row-accent, var(--brand-strong)) 48%, transparent);
+}
+
+/* the gauge: a calibrated track metered by a drawn accent fill */
+.proof-gauge {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 0.9rem;
+  height: 8px;
+  width: 100%;
+}
+
+/* faint ruler ticks — reads as a measurement scale under the value */
+.proof-gauge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in oklch, var(--line-strong) 65%, transparent) 0 1px,
+    transparent 1px 9px
+  );
+  -webkit-mask-image: linear-gradient(90deg, #000 0 80%, transparent);
+  mask-image: linear-gradient(90deg, #000 0 80%, transparent);
+  opacity: 0.7;
+}
+
+/* drawn accent fill with a hot leading edge (the "printing head").
+   DEFAULT = full meter, so scroll-timeline-less browsers are never blank. */
+.proof-gauge-fill {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(1);
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklch, var(--row-accent, var(--brand-strong)) 35%, transparent) 0%,
+    var(--row-accent, var(--brand-strong)) 100%
+  );
+  box-shadow: 0 0 9px color-mix(in oklch, var(--row-accent, var(--brand-strong)) 60%, transparent);
+}
+
+.proof-read {
+  min-width: 0;
+}
+
+.proof-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  color: var(--faint);
+  transition: color 0.25s var(--ease-out-expo);
+}
+
+.proof-flag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 55%, var(--faint));
+  transition:
+    background-color 0.25s var(--ease-out-expo),
+    box-shadow 0.25s var(--ease-out-expo),
+    transform 0.25s var(--ease-out-expo);
+}
+
+.proof-line:hover .proof-flag {
+  color: color-mix(in oklch, var(--row-accent, var(--brand-strong)) 70%, var(--ink));
+}
+
+.proof-line:hover .proof-flag-dot {
+  background: var(--row-accent, var(--brand-strong));
+  box-shadow: 0 0 7px color-mix(in oklch, var(--row-accent, var(--brand-strong)) 85%, transparent);
+  transform: scale(1.4);
+}
+
+.proof-label {
+  margin-top: 0.55rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.proof-detail {
+  margin-top: 0.5rem;
+  max-width: 54ch;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* cutting-edge signature: gauges fill + auras ignite on scroll. base states
+   above are the full/lit fallback; these run ONLY where motion is allowed AND
+   scroll-timeline is supported — nobody sees a half-drawn or blank ledger. */
+@keyframes proof-gauge-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes proof-aura-ignite {
+  from { opacity: 0; transform: translateY(-60%) scale(0.6); }
+  to { opacity: 0.9; transform: translateY(-60%) scale(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .proof-gauge-fill {
+      transform: scaleX(0);
+      animation: proof-gauge-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 15% cover 42%;
+    }
+    .proof-metric::before {
+      opacity: 0;
+      animation: proof-aura-ignite linear both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 40%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-line:hover .proof-flag-dot {
+    transform: none;
   }
 }
 

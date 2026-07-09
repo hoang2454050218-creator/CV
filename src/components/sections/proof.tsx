@@ -4,9 +4,18 @@ import { Reveal } from "@/components/reveal";
 import { SectionEyebrow } from "@/components/section-eyebrow";
 
 /**
- * Evidence ledger — log-style rows, not metric cards. Each value is a
- * receipt the system generates about itself.
+ * Evidence ledger — a live-telemetry readout. Each row is a receipt the
+ * system prints about itself: a hero mono number that counts up, metered by
+ * a gauge that draws on scroll, with a status flag. A 2-signal palette
+ * (cyan = measured · mint = verified) keeps it distinct from the 5-color
+ * console panels while sharing the deep-space instrument DNA.
  */
+const accentFor = (channel: string) =>
+  channel === "accent" ? "var(--accent)" : "var(--brand-strong)";
+
+/** machine status flags — mono voice, language-neutral like the console counts */
+const PROOF_FLAG = ["LIVE", "FUSED", "OOS", "PUBLIC", "SIGNED", "JUDGED"];
+
 export function Proof({ content }: { content: Content }) {
   const p = content.proof;
 
@@ -24,31 +33,40 @@ export function Proof({ content }: { content: Content }) {
             </p>
           </Reveal>
 
-          <div>
-            <ul className="border-t border-line-strong">
-              {p.rows.map((row, i) => (
-                <li key={row.value + row.label} className="border-b border-line">
-                  <Reveal delay={i * 0.06}>
-                    <div className="grid gap-x-8 gap-y-2 py-6 sm:grid-cols-[7rem_1fr]">
-                      <p
-                        className={`font-mono text-[1.75rem] font-semibold tabular-nums leading-none ${
-                          row.channel === "accent" ? "text-accent" : "text-brand-strong"
-                        }`}
-                      >
-                        <CountUp value={row.value} />
-                      </p>
-                      <div>
-                        <p className="font-semibold text-ink">{row.label}</p>
-                        <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-muted">
-                          {row.detail}
-                        </p>
-                      </div>
-                    </div>
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Evidence ledger — receipts the system prints about itself */}
+          <ol className="proof-ledger">
+            {p.rows.map((row, i) => (
+              <li
+                key={row.value + row.label}
+                className="proof-line"
+                style={{ ["--row-accent" as string]: accentFor(row.channel) }}
+              >
+                {/* the ledger rule ignites when this line is active */}
+                <span className="proof-line-rule" aria-hidden="true" />
+                <Reveal delay={i * 0.05} className="proof-line-grid">
+                  {/* hero metric — the reading */}
+                  <div className="proof-metric">
+                    <p className="proof-value">
+                      <CountUp value={row.value} />
+                    </p>
+                    <span className="proof-gauge" aria-hidden="true">
+                      <span className="proof-gauge-fill" />
+                    </span>
+                  </div>
+
+                  {/* readout — status flag, label, detail */}
+                  <div className="proof-read">
+                    <span className="proof-flag mono-label">
+                      <span className="proof-flag-dot" aria-hidden="true" />
+                      {PROOF_FLAG[i % PROOF_FLAG.length]}
+                    </span>
+                    <p className="proof-label">{row.label}</p>
+                    <p className="proof-detail">{row.detail}</p>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

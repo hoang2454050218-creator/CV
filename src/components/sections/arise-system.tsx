@@ -62,6 +62,7 @@ export function AriseSystem({ content }: { content: Content }) {
           >
             {a.services.map((service) => {
               const active = service.id === selectedId;
+              const acc = PANEL_ACCENT[service.id];
               return (
                 <button
                   key={service.id}
@@ -71,12 +72,28 @@ export function AriseSystem({ content }: { content: Content }) {
                   aria-controls={active ? `panel-${service.id}` : undefined}
                   tabIndex={active ? 0 : -1}
                   onClick={() => setSelectedId(service.id)}
-                  className={`rounded-full border px-4 py-1.5 text-[0.9375rem] font-semibold transition-colors ${
+                  style={
                     active
-                      ? "border-brand-strong bg-brand text-brand-ink"
-                      : "border-line text-muted hover:border-line-strong hover:text-ink"
+                      ? {
+                          borderColor: acc,
+                          color: acc,
+                          backgroundColor: `color-mix(in oklch, ${acc} 14%, transparent)`,
+                          boxShadow: `0 0 16px -4px color-mix(in oklch, ${acc} 70%, transparent)`,
+                        }
+                      : undefined
+                  }
+                  className={`service-tab inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[0.9375rem] font-semibold ${
+                    active ? "" : "border-line text-muted hover:border-line-strong hover:text-ink"
                   }`}
                 >
+                  <span
+                    aria-hidden="true"
+                    className="size-1.5 rounded-full"
+                    style={{
+                      backgroundColor: active ? acc : "var(--faint)",
+                      boxShadow: active ? `0 0 7px ${acc}` : "none",
+                    }}
+                  />
                   {service.name}
                 </button>
               );
