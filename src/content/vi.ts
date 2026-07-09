@@ -35,9 +35,9 @@ export const vi: Content = {
     livePill: "ĐANG CHẠY PRODUCTION",
     liveDetail: "3 service · tín hiệu thật · từ giữa 2026",
     kicker: "Bùi Xuân Hoàng — founder, người xây dựng duy nhất",
-    headline: "Bảy tháng. Một người. Ba hệ thống đang vận hành.",
+    headline: "Nhìn thấy rủi ro của thế giới trước khi nó cập cảng.",
     subheadline:
-      "Sinh viên logistics năm hai — chỉ huy AI coding agent như một đội ngũ kỹ sư, dưới kỷ luật do chính tôi thiết kế. ARISE đọc rủi ro của thế giới, dự báo, và định giá nó — trên hạ tầng thật.",
+      "Một sinh viên logistics năm hai, điều phối các agent AI như một đội kỹ sư — theo kỷ luật do chính mình đặt ra. ARISE, sản phẩm đầu tay, đã đi vào vận hành trên hạ tầng thật: đọc rủi ro toàn cầu từ hơn 18 nguồn thời gian thực, dự báo trên những tuyến hàng hải đang hoạt động, rồi quy thành mức cước minh bạch.",
     lookingForLabel: "Đang tìm kiếm",
     lookingFor: ["Vốn đầu tư seed", "Design partner trong ngành logistics"],
     ctaExplore: "Khám phá ARISE",
