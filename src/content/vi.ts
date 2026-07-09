@@ -255,7 +255,7 @@ export const vi: Content = {
     groups: [
       {
         name: "Điều phối AI",
-        items: ["Claude Code", "GPT", "Cursor", "Ra đề bài & đặc tả", "Review & kiểm chứng đối kháng", "Kiểm soát chất lượng", "TDD-first"],
+        items: ["Claude Code", "GPT", "Codex", "Cursor", "GitHub Copilot", "Gemini", "Ra đề bài & đặc tả", "Review & kiểm chứng đối kháng", "TDD-first"],
       },
       {
         name: "Thiết kế & Sáng tạo",
@@ -275,12 +275,15 @@ export const vi: Content = {
       },
     ],
     consoleLabel: "Bảng năng lực",
-    marqueeLabel: "Công cụ & công nghệ tôi điều phối — không phải danh sách code gõ tay",
+    marqueeLabel: "Công cụ & nền tảng tôi điều phối",
     marqueeItems: [
-      "Claude Code", "GPT", "Cursor", "FastAPI", "Django 5", "DRF", "Celery",
-      "PostgreSQL", "Redis", "React 19", "Vue 3", "Vite", "TypeScript",
-      "Tailwind CSS", "Pinia", "Radix UI", "Pydantic v2", "async SQLAlchemy",
-      "Docker", "Kubernetes", "GitHub Actions", "CodeQL", "Trivy", "cosign",
+      "Claude Code", "GPT", "Codex", "Cursor", "GitHub Copilot", "Gemini",
+      "FastAPI", "Django 5", "DRF", "Celery", "PostgreSQL", "Redis",
+      "React 19", "Vue 3", "Vite", "TypeScript", "Tailwind CSS", "Pinia", "Radix UI", "Figma",
+      "Pydantic v2", "async SQLAlchemy",
+      "Docker", "Kubernetes", "Nginx", "Git", "Vercel", "GitHub Actions",
+      "CodeQL", "Trivy", "cosign",
+      "Grafana", "Prometheus", "Sentry",
       "Playwright", "Telegram Bot API", "Webhooks",
     ],
   },
@@ -355,7 +358,7 @@ export const vi: Content = {
     documentTitle: "CV — Bùi Xuân Hoàng",
     documentTag: "Hồ sơ năng lực · 2026",
     name: "Bùi Xuân Hoàng",
-    role: "Founder & người xây dựng duy nhất, ARISE — nền tảng dự báo rủi ro vận tải",
+    role: "Founder & người xây dựng duy nhất, ARISE — nền tảng thông tin rủi ro chuỗi cung ứng",
     contactLine: [
       "Đà Nẵng, Việt Nam",
       "hoang_2454050218@dau.edu.vn",
@@ -364,48 +367,48 @@ export const vi: Content = {
     ],
     summaryHeading: "Tóm tắt",
     summary:
-      "Sinh viên logistics năm hai, kỹ sư tự học. Một mình thiết kế, xây dựng và vận hành ARISE: ba service production (OMEN → VANTIS → NEXQUOTE) cảm nhận rủi ro toàn cầu, dự báo tác động lên tuyến vận tải và sinh báo giá xác định — hoàn thành trong ~7 tháng bằng cách chỉ huy AI coding agent dưới kỷ luật tự thiết kế gồm TDD, kiểm chứng đối kháng và bảo mật fail-closed. Đang tìm vốn seed và design partner ngành logistics.",
+      "Một mình thiết kế, xây dựng và vận hành ARISE — ba service production (OMEN → VANTIS → NEXQUOTE) cảm nhận rủi ro toàn cầu, dự báo tác động lên tuyến vận tải và quy đổi thành báo giá xác định. Hoàn thành trong ~7 tháng khi đang là sinh viên logistics năm hai, bằng cách chỉ huy các AI coding agent dưới kỷ luật do chính tôi đặt ra: TDD, kiểm chứng đối kháng và bảo mật fail-closed. Đang tìm vốn seed và design partner ngành logistics.",
     productHeading: "ARISE — nền tảng",
     productName: "ARISE",
     productPeriod: "2025 — nay · chạy production từ giữa 2026",
     productIntro:
-      "Dự báo rủi ro chuỗi cung ứng end-to-end: ba service độc lập, đã deploy production, trong một pipeline.",
+      "Thông tin rủi ro chuỗi cung ứng end-to-end — ba service độc lập, triển khai production trong cùng một pipeline.",
     productLinks: "nexquoteapp.com · omen.nexquoteapp.com · vantis.nexquoteapp.com",
     services: [
       {
         name: "OMEN — engine tín hiệu rủi ro thời gian thực",
         bullets: [
-          "Thu nạp và hợp nhất 18+ nguồn trực tiếp (tin tức, hàng hóa, nhiên liệu bunker, thời tiết, tắc cảng, thuế quan, prediction market) thành tín hiệu có truy xuất nguồn gốc.",
-          "Fail-closed 'không mock trên production'; output ký số; SDK. FastAPI · Python · Redis · Kubernetes-ready.",
+          "Thu nạp và hợp nhất 18+ nguồn trực tiếp — tin tức, hàng hóa, nhiên liệu bunker, thời tiết, tắc cảng, thuế quan, prediction market — thành tín hiệu rủi ro có truy xuất nguồn gốc.",
+          "Fail-closed theo thiết kế ('không mock trên production'), output ký số, kèm SDK. FastAPI · Python · Redis · Kubernetes-ready.",
         ],
       },
       {
         name: "VANTIS (RISKCAST) — tầng dự báo & quyết định",
         bullets: [
-          "Dự báo rủi ro tuyến đã hiệu chỉnh, neo vào kết quả AIS thật của tàu; hiệu chỉnh giảm ~34% sai số out-of-sample.",
-          "Telegram proof-bot công bố dự báo + bảng điểm tự chấm. FastAPI · Pydantic v2 · async SQLAlchemy · Postgres/Redis · React 19 · TypeScript.",
+          "Dự báo rủi ro tuyến đã hiệu chỉnh, neo vào kết quả AIS thật của tàu — hiệu chỉnh giảm ~34% sai số out-of-sample.",
+          "Telegram proof-bot công bố mọi dự báo kèm bảng điểm tự chấm. FastAPI · Pydantic v2 · async SQLAlchemy · Postgres/Redis · React 19 · TypeScript.",
         ],
       },
       {
         name: "NEXQUOTE — SaaS báo giá cước multi-tenant",
         bullets: [
-          "Input lộn xộn (text, bảng tính, PDF) → báo giá xác định, an toàn kiểm toán; sinh PDF, import bảng giá có AI hỗ trợ, duyệt kiểu ERP.",
-          "'Security Floor': giá xác định, cách ly tenant nghiêm ngặt, output fail-closed. Django 5 · DRF · Celery · Postgres/Redis · Vue 3 · TypeScript · Playwright E2E.",
+          "Biến dữ liệu đầu vào phi cấu trúc (text, bảng tính, PDF) thành báo giá xác định, an toàn kiểm toán — sinh PDF, import bảng giá có AI hỗ trợ, duyệt kiểu ERP.",
+          "'Security floor' đảm bảo giá xác định, cách ly tenant nghiêm ngặt và output fail-closed. Django 5 · DRF · Celery · Postgres/Redis · Vue 3 · TypeScript · Playwright E2E.",
         ],
       },
     ],
     highlightsHeading: "Bằng chứng chọn lọc",
     highlights: [
-      "3 service chạy production trên hạ tầng thật từ giữa 2026.",
+      "Ba service chạy production trên hạ tầng thật từ giữa 2026.",
       "Giảm ~34% sai số out-of-sample nhờ hiệu chỉnh trên dữ liệu tàu thật.",
-      "Telegram proof-bot công khai với bảng điểm dự báo tự chấm.",
-      "Top 10 hai cuộc thi khởi nghiệp toàn quốc với ARISE: 'Khởi nghiệp cùng Kawai' và I-STARTUP.",
+      "Telegram proof-bot công khai với bảng điểm dự báo tự chấm theo thời gian thực.",
+      "Top 10 tại hai cuộc thi khởi nghiệp toàn quốc với ARISE — 'Khởi nghiệp cùng Kawai' và I-STARTUP.",
       "CI/CD gia cố bảo mật trên mọi repo: CodeQL, Dependabot, SBOM + cosign, Trivy, contract test.",
-      "Quy trình AI-native: thiết kế kiến trúc, chỉ huy và kiểm chứng AI agent dưới TDD + review đối kháng.",
+      "Quy trình AI-native: thiết kế kiến trúc, chỉ huy và kiểm chứng AI agent dưới TDD và review đối kháng.",
     ],
     skillsHeading: "Kỹ năng",
     skillGroups: [
-      { name: "Điều phối AI", items: "Claude Code, GPT, Cursor; ra đề bài, review, kiểm chứng đối kháng, kiểm soát chất lượng, TDD-first" },
+      { name: "Điều phối AI", items: "Claude Code, GPT, Codex, Cursor, GitHub Copilot, Gemini; ra đề bài & đặc tả, review & kiểm chứng đối kháng, TDD-first" },
       { name: "Thiết kế & Sáng tạo", items: "Product & UI/UX, thương hiệu & nhận diện, design system & tokens, định hướng sáng tạo" },
       { name: "Kiến trúc hệ thống", items: "Thiết kế kiến trúc, luồng dữ liệu & API, tích hợp liên sản phẩm, bảo mật fail-closed, đường tiền xác định" },
       { name: "Sản phẩm & Vận hành", items: "Ý tưởng → vận hành trọn vòng, chiến lược sản phẩm, tăng trưởng, chuyên ngành logistics" },

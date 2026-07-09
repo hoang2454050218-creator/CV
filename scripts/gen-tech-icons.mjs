@@ -6,7 +6,10 @@ import { writeFileSync } from "node:fs";
 const MAP = {
   "Claude Code": ["claude", "anthropic"],
   "GPT": ["openai"],
+  "Codex": [], // OpenAI Codex — no mark in simple-icons; monogram fallback
   "Cursor": ["cursor"],
+  "GitHub Copilot": ["githubcopilot"],
+  "Gemini": ["googlegemini"],
   "FastAPI": ["fastapi"],
   "Django 5": ["django"],
   // DRF is Django-family, but the identical Django "dj" mark next to Django 5
@@ -28,10 +31,17 @@ const MAP = {
   "async SQLAlchemy": [],
   "Docker": ["docker"],
   "Kubernetes": ["kubernetes"],
+  "Nginx": ["nginx"],
+  "Git": ["git"],
+  "Vercel": ["vercel"],
+  "Figma": ["figma"],
   "GitHub Actions": ["githubactions"],
   "CodeQL": ["github"],
   "Trivy": ["trivy", "aquasecurity"],
   "cosign": ["sigstore"],
+  "Grafana": ["grafana"],
+  "Prometheus": ["prometheus"],
+  "Sentry": ["sentry"],
   "Playwright": ["playwright"],
   "Telegram Bot API": ["telegram"],
   "Webhooks": ["webhooks"],

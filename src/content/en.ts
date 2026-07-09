@@ -255,7 +255,7 @@ export const en: Content = {
     groups: [
       {
         name: "AI Orchestration",
-        items: ["Claude Code", "GPT", "Cursor", "Briefing & specs", "Adversarial review", "Quality control", "TDD-first"],
+        items: ["Claude Code", "GPT", "Codex", "Cursor", "GitHub Copilot", "Gemini", "Briefing & specs", "Adversarial review", "TDD-first"],
       },
       {
         name: "Design & Creative",
@@ -275,12 +275,15 @@ export const en: Content = {
       },
     ],
     consoleLabel: "Capability console",
-    marqueeLabel: "Tools & technologies I orchestrate — not a list of hand-typed code",
+    marqueeLabel: "Tools & platforms I orchestrate",
     marqueeItems: [
-      "Claude Code", "GPT", "Cursor", "FastAPI", "Django 5", "DRF", "Celery",
-      "PostgreSQL", "Redis", "React 19", "Vue 3", "Vite", "TypeScript",
-      "Tailwind CSS", "Pinia", "Radix UI", "Pydantic v2", "async SQLAlchemy",
-      "Docker", "Kubernetes", "GitHub Actions", "CodeQL", "Trivy", "cosign",
+      "Claude Code", "GPT", "Codex", "Cursor", "GitHub Copilot", "Gemini",
+      "FastAPI", "Django 5", "DRF", "Celery", "PostgreSQL", "Redis",
+      "React 19", "Vue 3", "Vite", "TypeScript", "Tailwind CSS", "Pinia", "Radix UI", "Figma",
+      "Pydantic v2", "async SQLAlchemy",
+      "Docker", "Kubernetes", "Nginx", "Git", "Vercel", "GitHub Actions",
+      "CodeQL", "Trivy", "cosign",
+      "Grafana", "Prometheus", "Sentry",
       "Playwright", "Telegram Bot API", "Webhooks",
     ],
   },
@@ -355,7 +358,7 @@ export const en: Content = {
     documentTitle: "CV — Bùi Xuân Hoàng",
     documentTag: "Curriculum Vitae · 2026",
     name: "Bùi Xuân Hoàng",
-    role: "Founder & sole builder, ARISE — freight risk-intelligence platform",
+    role: "Founder & sole builder, ARISE — a supply-chain risk-intelligence platform",
     contactLine: [
       "Da Nang, Vietnam",
       "hoang_2454050218@dau.edu.vn",
@@ -364,48 +367,48 @@ export const en: Content = {
     ],
     summaryHeading: "Summary",
     summary:
-      "Second-year logistics student and self-taught engineer. Solo-designed, built, and operate ARISE: three production services (OMEN → VANTIS → NEXQUOTE) that sense global risk, predict freight-route impact, and generate deterministic quotes — shipped in ~7 months by directing AI coding agents under a self-designed discipline of TDD, adversarial verification, and fail-closed security. Seeking seed investment and logistics design partners.",
+      "Founder-builder of ARISE — three production services (OMEN → VANTIS → NEXQUOTE) that sense global risk, forecast its impact on freight routes, and price it as deterministic quotes. Solo-designed and shipped in ~7 months as a second-year logistics student, by directing AI coding agents under a discipline I set: test-driven development, adversarial verification, and fail-closed security. Seeking seed investment and logistics design partners.",
     productHeading: "ARISE — the platform",
     productName: "ARISE",
     productPeriod: "2025 — present · live in production since mid-2026",
     productIntro:
-      "End-to-end supply-chain risk intelligence: three independent, production-deployed services in one pipeline.",
+      "End-to-end supply-chain risk intelligence — three independent services deployed to production as a single pipeline.",
     productLinks: "nexquoteapp.com · omen.nexquoteapp.com · vantis.nexquoteapp.com",
     services: [
       {
-        name: "OMEN — real-time risk signal engine",
+        name: "OMEN — real-time risk-signal engine",
         bullets: [
-          "Ingests and fuses 18+ live sources (news, commodities, bunker fuel, weather, port congestion, tariffs, prediction markets) into provenance-tracked signals.",
-          "Fail-closed 'no mock in production'; signed outputs; SDKs. FastAPI · Python · Redis · Kubernetes-ready.",
+          "Ingests and fuses 18+ live sources — news, commodities, bunker fuel, weather, port congestion, tariffs, prediction markets — into provenance-tracked risk signals.",
+          "Fail-closed by design ('no mock in production'), signed outputs, published SDKs. FastAPI · Python · Redis · Kubernetes-ready.",
         ],
       },
       {
         name: "VANTIS (RISKCAST) — prediction & decision layer",
         bullets: [
-          "Calibrated route-risk predictions grounded in real AIS vessel outcomes; calibration cut out-of-sample error ~34%.",
-          "Live Telegram proof-bot publishes predictions + self-grading scorecard. FastAPI · Pydantic v2 · async SQLAlchemy · Postgres/Redis · React 19 · TypeScript.",
+          "Calibrated route-risk forecasts, grounded in real AIS vessel outcomes — calibration cut out-of-sample error by ~34%.",
+          "A live Telegram proof-bot publishes every forecast with a self-grading scorecard. FastAPI · Pydantic v2 · async SQLAlchemy · Postgres/Redis · React 19 · TypeScript.",
         ],
       },
       {
         name: "NEXQUOTE — multi-tenant freight-quoting SaaS",
         bullets: [
-          "Messy input (text, spreadsheets, PDFs) → deterministic, audit-safe quotes; PDF generation, AI-assisted rate import, ERP-style approvals.",
-          "'Security Floor': deterministic pricing, strict tenant isolation, fail-closed output. Django 5 · DRF · Celery · Postgres/Redis · Vue 3 · TypeScript · Playwright E2E.",
+          "Turns unstructured input (text, spreadsheets, PDFs) into deterministic, audit-safe quotes — PDF generation, AI-assisted rate import, ERP-style approvals.",
+          "A 'security floor' enforces deterministic pricing, strict tenant isolation, and fail-closed output. Django 5 · DRF · Celery · Postgres/Redis · Vue 3 · TypeScript · Playwright E2E.",
         ],
       },
     ],
     highlightsHeading: "Selected proof",
     highlights: [
-      "3 services live in production on real infrastructure since mid-2026.",
-      "~34% out-of-sample error reduction from calibration against real vessel data.",
-      "Public Telegram proof-bot with a running, self-grading prediction scorecard.",
-      "Top 10 at two national startup competitions with ARISE: 'Khởi nghiệp cùng Kawai' and I-STARTUP.",
-      "Security-hardened CI/CD on all repos: CodeQL, Dependabot, SBOM + cosign, Trivy, contract tests.",
-      "AI-native workflow: architect, direct, and verify AI agents under TDD + adversarial review.",
+      "Three services running in production on real infrastructure since mid-2026.",
+      "~34% reduction in out-of-sample error, calibrated against real vessel data.",
+      "A public Telegram proof-bot with a live, self-grading forecast scorecard.",
+      "Top 10 at two national startup competitions with ARISE — 'Khởi nghiệp cùng Kawai' and I-STARTUP.",
+      "Security-hardened CI/CD across every repo: CodeQL, Dependabot, SBOM + cosign, Trivy, contract tests.",
+      "An AI-native workflow: architecting, directing, and verifying AI agents under TDD and adversarial review.",
     ],
     skillsHeading: "Skills",
     skillGroups: [
-      { name: "AI Orchestration", items: "Claude Code, GPT, Cursor; briefing, review, adversarial verification, quality control, TDD-first" },
+      { name: "AI Orchestration", items: "Claude Code, GPT, Codex, Cursor, GitHub Copilot, Gemini; briefing & specs, adversarial review, TDD-first" },
       { name: "Design & Creative", items: "Product & UI/UX, brand & identity, design systems & tokens, creative direction" },
       { name: "System Architecture", items: "Architecture design, data flows & APIs, cross-product integration, fail-closed security, deterministic money paths" },
       { name: "Product & Operations", items: "Idea → live end to end, product strategy, growth, logistics domain" },

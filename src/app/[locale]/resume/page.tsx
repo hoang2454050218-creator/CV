@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
 function SectionHeading({ index, children }: { index: string; children: React.ReactNode }) {
   return (
     <div className="mb-4 mt-10 flex items-baseline gap-3.5 print:mt-7">
-      <span className="font-mono text-[0.66rem] font-medium tabular-nums text-neutral-300">
+      <span className="font-mono text-[0.72rem] font-semibold tabular-nums text-cyan-700 print:text-neutral-500">
         {index}
       </span>
       <h2 className="whitespace-nowrap text-[0.72rem] font-bold uppercase tracking-[0.2em] text-neutral-900">

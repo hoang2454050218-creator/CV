@@ -1,9 +1,16 @@
 import { TECH_ICONS } from "./tech-icons-data";
 
+/** Explicit monograms where the auto-derived one would collide or read poorly.
+ *  Codex would derive "Co" and clash with cosign. */
+const MONOGRAM_OVERRIDE: Record<string, string> = {
+  Codex: "Cx",
+};
+
 /** Short, distinct monogram for tools without an official brand mark, so each
  *  fallback chip reads as a designed token — not an identical "icon failed to
- *  load" placeholder. e.g. GPT, DRF, Sq (SQLAlchemy), Co (cosign), Pl, We. */
+ *  load" placeholder. e.g. GPT, DRF, Sq (SQLAlchemy), Co (cosign), Cx, Pl, We. */
 function monogram(name: string): string {
+  if (MONOGRAM_OVERRIDE[name]) return MONOGRAM_OVERRIDE[name];
   const cleaned = name.replace(/[^A-Za-z0-9 ]/g, "").trim();
   const words = cleaned.split(/\s+/).filter(Boolean);
   const w = words.find((x) => /[A-Z]/.test(x)) ?? words[0] ?? cleaned;
