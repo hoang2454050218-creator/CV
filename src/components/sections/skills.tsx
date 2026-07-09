@@ -1,6 +1,8 @@
 import type { Content } from "@/content/types";
 import { Reveal } from "@/components/reveal";
 import { SectionEyebrow } from "@/components/section-eyebrow";
+import { TechIcon } from "@/components/tech-icon";
+import { TECH_ICONS } from "@/components/tech-icons-data";
 
 /** per-channel accent identity — each row wears its own product color */
 const ROW_ACCENT = [
@@ -88,16 +90,28 @@ export function Skills({ content }: { content: Content }) {
                 <div
                   key={clone ? "clone" : "main"}
                   aria-hidden={clone || undefined}
-                  className="flex shrink-0 items-center gap-x-6 pr-6"
+                  className="flex shrink-0 items-center gap-3 pr-3"
                 >
-                  {s.marqueeItems.map((tool) => (
-                    <span
-                      key={tool}
-                      className="skill-marquee-item mono-label whitespace-nowrap text-muted"
-                    >
-                      {tool}
-                    </span>
-                  ))}
+                  {s.marqueeItems.map((tool) => {
+                    const data = TECH_ICONS[tool];
+                    return (
+                      <span
+                        key={tool}
+                        className="tech-chip"
+                        style={
+                          data
+                            ? {
+                                ["--logo-l" as string]: data.light,
+                                ["--logo-d" as string]: data.dark,
+                              }
+                            : undefined
+                        }
+                      >
+                        <TechIcon name={tool} className="tech-chip-logo" />
+                        <span className="tech-chip-name">{tool}</span>
+                      </span>
+                    );
+                  })}
                 </div>
               ))}
             </div>

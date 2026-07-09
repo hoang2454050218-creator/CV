@@ -140,7 +140,7 @@ export function Hero({ locale, content }: { locale: Locale; content: Content }) 
             outputLabel={h.diagramLabels.output}
             ariaLabel={h.diagramAria}
           />
-          <p className="mx-auto mt-6 max-w-[52ch] text-center text-sm text-muted">
+          <p className="mx-auto mt-6 max-w-2xl text-balance text-center text-sm text-muted">
             {h.diagramCaption}
           </p>
 

@@ -315,13 +315,58 @@ p {
   transform: scale(1.4);
 }
 
-/* marquee tokens: quiet-to-ink on hover, no boxes */
-.skill-marquee-item {
-  transition: color 0.2s var(--ease-out-expo);
+/* orchestrated-tools marquee — brand-logo chips on a scrolling ribbon.
+   Each chip carries a theme-safe logo tint (--logo-l / --logo-d) so brand
+   marks stay crisp on both the navy and the light background. */
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklch, var(--surface) 55%, transparent);
+  white-space: nowrap;
+  transition:
+    border-color 0.25s var(--ease-out-expo),
+    background-color 0.25s var(--ease-out-expo),
+    box-shadow 0.25s var(--ease-out-expo),
+    transform 0.25s var(--ease-out-expo);
 }
 
-.skill-marquee-item:hover {
+.tech-chip-logo {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  color: var(--logo-l, var(--muted));
+  transition: filter 0.25s var(--ease-out-expo);
+}
+
+.dark .tech-chip-logo {
+  color: var(--logo-d, var(--muted));
+}
+
+.tech-chip-name {
+  font-family: var(--font-stack-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  transition: color 0.25s var(--ease-out-expo);
+}
+
+.tech-chip:hover {
+  border-color: var(--line-strong);
+  background: color-mix(in oklch, var(--surface) 96%, transparent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.55);
+}
+
+.tech-chip:hover .tech-chip-name {
   color: var(--ink);
+}
+
+.tech-chip:hover .tech-chip-logo {
+  filter: drop-shadow(0 0 8px color-mix(in oklch, currentColor 70%, transparent));
 }
 
 @media (prefers-reduced-motion: reduce) {
