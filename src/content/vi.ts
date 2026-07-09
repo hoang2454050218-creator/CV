@@ -353,6 +353,7 @@ export const vi: Content = {
 
   resume: {
     documentTitle: "CV — Bùi Xuân Hoàng",
+    documentTag: "Hồ sơ năng lực · 2026",
     name: "Bùi Xuân Hoàng",
     role: "Founder & người xây dựng duy nhất, ARISE — nền tảng dự báo rủi ro vận tải",
     contactLine: [

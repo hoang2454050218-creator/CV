@@ -166,6 +166,7 @@ export interface Content {
 
 export interface ResumeContent {
   documentTitle: string;
+  documentTag: string;
   name: string;
   role: string;
   contactLine: string[];

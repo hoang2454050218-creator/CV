@@ -353,6 +353,7 @@ export const en: Content = {
 
   resume: {
     documentTitle: "CV — Bùi Xuân Hoàng",
+    documentTag: "Curriculum Vitae · 2026",
     name: "Bùi Xuân Hoàng",
     role: "Founder & sole builder, ARISE — freight risk-intelligence platform",
     contactLine: [
